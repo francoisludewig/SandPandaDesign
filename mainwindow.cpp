@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include<QPushButton>
+#include "Presenter/messagepresenter.h"
 
 void MainWindow::InitPlanTab(MyGLWidget* myGLWidget)
 {
@@ -60,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent)
     InitPlanTab(myGLWidget);
     InitDiskTab(myGLWidget);
     InitConeTab(myGLWidget);
+
+    MessagePresenter::getInstance().SetLabel(ui->messageLabel);
+    MessagePresenter::getInstance().AddMessage("MERDE !!!");
 }
 
 MainWindow::~MainWindow()

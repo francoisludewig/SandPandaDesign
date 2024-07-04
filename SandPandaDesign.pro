@@ -19,6 +19,7 @@ SOURCES += \
     Model/velocity.cpp \
     Presenter/conepresenter.cpp \
     Presenter/diskpresenter.cpp \
+    Presenter/messagepresenter.cpp \
     Presenter/planpresenter.cpp \
     Presenter/velocitiespresenter.cpp \
     Presenter/velocitypresenter.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     Model/velocity.h \
     Presenter/conepresenter.h \
     Presenter/diskpresenter.h \
+    Presenter/messagepresenter.h \
     Presenter/planpresenter.h \
     Presenter/velocitiespresenter.h \
     Presenter/velocitypresenter.h \

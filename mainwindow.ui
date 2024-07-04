@@ -1262,10 +1262,412 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="elbow">
      <attribute name="title">
       <string>Elbow</string>
      </attribute>
+     <widget class="QPushButton" name="removeElbowPushButton">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>210</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
+     <widget class="VelocitiesTabWidget" name="elbowVelocitiesTabWidget">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>210</y>
+        <width>421</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_25">
+       <attribute name="title">
+        <string>Vx</string>
+       </attribute>
+       <widget class="QTableWidget" name="vxTableWidget_elbow">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>401</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>A0</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>A1</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>w</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>p</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_26">
+       <attribute name="title">
+        <string>Vy</string>
+       </attribute>
+       <widget class="QTableWidget" name="vyTableWidget_elbow">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>401</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>A0</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>A1</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>w</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>p</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_27">
+       <attribute name="title">
+        <string>Vz</string>
+       </attribute>
+       <widget class="QTableWidget" name="vzTableWidget_elbow">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>401</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>A0</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>A1</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>w</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>p</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_28">
+       <attribute name="title">
+        <string>Wx</string>
+       </attribute>
+       <widget class="QTableWidget" name="wxTableWidget_elbow">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>401</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>A0</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>A1</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>w</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>p</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_29">
+       <attribute name="title">
+        <string>Wy</string>
+       </attribute>
+       <widget class="QTableWidget" name="wyTableWidget_elbow">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>401</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>A0</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>A1</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>w</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>p</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_30">
+       <attribute name="title">
+        <string>Wz</string>
+       </attribute>
+       <widget class="QTableWidget" name="wzTableWidget_elbow">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>401</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>A0</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>A1</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>w</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>p</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="PlanTableWidget" name="elbowTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>601</width>
+        <height>192</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>xi</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>yi</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>zi</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>xf</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>yf</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>zf</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>nx</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ny</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>nz</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>r</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="addElbowPushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -1368,6 +1770,25 @@
       <string>0.001</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="messageLabel">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>10</y>
+      <width>551</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
