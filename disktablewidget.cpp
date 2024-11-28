@@ -27,7 +27,7 @@ void DiskTableWidget::on_add_disk()
 
     connect(diskPresenter.getInOutCheckBox(), &QCheckBox::stateChanged, this, &DiskTableWidget::on_new_checkbox_value);
 
-    printf("New Plan !\n");
+    printf("New Disk !\n");
     emit new_disk(disk);
     emit data_updated();
 }

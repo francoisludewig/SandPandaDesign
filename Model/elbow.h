@@ -12,6 +12,7 @@ public:
     void ReadFromFile(FILE *ft);
     void Draw(bool isLineContainer);
     double ComputeScale() const;
+    void base();
 
     double xi,yi,zi;
     double xf,yf,zf;

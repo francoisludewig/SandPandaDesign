@@ -17,6 +17,7 @@ VelocitiesPresenter::VelocitiesPresenter(std::shared_ptr<Elbow> s) : solid(nullp
     presenters["wx"] = VelocityPresenter(&s->wx);
     presenters["wy"] = VelocityPresenter(&s->wy);
     presenters["wz"] = VelocityPresenter(&s->wz);
+    updateWidget();
 }
 
 QTableWidgetItem* VelocitiesPresenter::getItem(std::string presenterName, std::string itemName)

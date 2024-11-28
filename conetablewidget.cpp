@@ -33,7 +33,7 @@ void ConeTableWidget::on_add_cone()
     connect(conePresenter.getTopCheckBox(), &QCheckBox::stateChanged, this, &ConeTableWidget::on_new_checkbox_value);
     connect(conePresenter.getBottomCheckBox(), &QCheckBox::stateChanged, this, &ConeTableWidget::on_new_checkbox_value);
 
-    printf("New Plan !\n");
+    printf("New Cone !\n");
     emit new_cone(cone);
     emit data_updated();
 }

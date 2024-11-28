@@ -42,10 +42,23 @@ void VelocitiesTabWidget::addSolid(std::shared_ptr<Solid> s)
     update();
 }
 
+void VelocitiesTabWidget::addElbow(std::shared_ptr<Elbow> s) {
+    vp.push_back(VelocitiesPresenter(s));
+    update();
+}
+
 void VelocitiesTabWidget::removeSolid(int index)
 {
-    auto velocitiesPlanPresenterToRemove = std::next(this->vp.begin(), index);
-    vp.erase(velocitiesPlanPresenterToRemove);
+    auto velocitiesPresenterToRemove = std::next(this->vp.begin(), index);
+    vp.erase(velocitiesPresenterToRemove);
+    this->removeRow(index);
+}
+
+
+void VelocitiesTabWidget::removeElbow(int index)
+{
+    auto velocitiesPresenterToRemove = std::next(this->vp.begin(), index);
+    vp.erase(velocitiesPresenterToRemove);
     this->removeRow(index);
 }
 

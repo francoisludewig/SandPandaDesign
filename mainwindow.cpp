@@ -51,6 +51,24 @@ void MainWindow::InitConeTab(MyGLWidget* myGLWidget)
     velocitiesTabWidget->buildConnections("_cone");
 }
 
+
+void MainWindow::InitElbowTab(MyGLWidget* myGLWidget)
+{
+    QPushButton* addButton = (QPushButton*)(ui->addElbowPushButton);
+    QPushButton* removeButton = (QPushButton*)(ui->removeElbowPushButton);
+    ElbowTableWidget* table = (ElbowTableWidget*)(ui->elbowTableWidget);
+    VelocitiesTabWidget* velocitiesTabWidget = ( VelocitiesTabWidget*)(ui->elbowVelocitiesTabWidget);
+    connect(addButton, &QPushButton::clicked, table, &ElbowTableWidget::on_add_elbow);
+    connect(removeButton, &QPushButton::clicked, table, &ElbowTableWidget::on_remove_elbow);
+    connect(table, &ElbowTableWidget::itemChanged, table, &ElbowTableWidget::on_new_value);
+    connect(table, &ElbowTableWidget::data_updated, myGLWidget, &MyGLWidget::on_new_data);
+    connect(table, &ElbowTableWidget::new_elbow, velocitiesTabWidget, &VelocitiesTabWidget::addElbow);
+    connect(table, &ElbowTableWidget::remove_elbow, velocitiesTabWidget, &VelocitiesTabWidget::removeElbow);
+    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
+    velocitiesTabWidget->buildConnections("_elbow");
+}
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -61,9 +79,10 @@ MainWindow::MainWindow(QWidget *parent)
     InitPlanTab(myGLWidget);
     InitDiskTab(myGLWidget);
     InitConeTab(myGLWidget);
+    InitElbowTab(myGLWidget);
 
     MessagePresenter::getInstance().SetLabel(ui->messageLabel);
-    MessagePresenter::getInstance().AddMessage("MERDE !!!");
+    MessagePresenter::getInstance().AddMessage("SandPandaDesign");
 }
 
 MainWindow::~MainWindow()

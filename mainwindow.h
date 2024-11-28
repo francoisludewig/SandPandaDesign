@@ -25,5 +25,6 @@ private:
     void InitPlanTab(MyGLWidget* myGLWidget);
     void InitDiskTab(MyGLWidget* myGLWidget);
     void InitConeTab(MyGLWidget* myGLWidget);
+    void InitElbowTab(MyGLWidget* myGLWidget);
 };
 #endif // MAINWINDOW_H

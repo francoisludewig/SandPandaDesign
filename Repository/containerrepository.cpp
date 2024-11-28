@@ -99,6 +99,24 @@ std::shared_ptr<Cone> ContainerRepository::AddCone()
     return cone_ptr;
 }
 
+
+std::shared_ptr<Elbow> ContainerRepository::AddElbow()
+{
+    Elbow elbow{};
+    auto elbow_ptr = std::make_shared<Elbow>(elbow);
+    elbows.push_back(elbow_ptr);
+    return elbow_ptr;
+}
+
+std::shared_ptr<Box> ContainerRepository::AddBox()
+{
+    Box box{};
+    auto box_ptr = std::make_shared<Box>(box);
+    boxes.push_back(box_ptr);
+    return box_ptr;
+}
+
+
 void ContainerRepository::RemovePlan(std::shared_ptr<Plan> plan)
 {
     auto it = std::find(plans.begin(), plans.end(),
@@ -130,6 +148,27 @@ void ContainerRepository::RemoveCone(std::shared_ptr<Cone> cone)
     // If element is found found, erase it
     if (it != cones.end()) {
         cones.erase(it);
+    }
+}
+
+
+void ContainerRepository::RemoveElbow(std::shared_ptr<Elbow> elbow) {
+    auto it = std::find(elbows.begin(), elbows.end(),
+                        elbow);
+
+    // If element is found found, erase it
+    if (it != elbows.end()) {
+        elbows.erase(it);
+    }
+}
+
+void ContainerRepository::RemoveBox(std::shared_ptr<Box> box) {
+    auto it = std::find(boxes.begin(), boxes.end(),
+                        box);
+
+    // If element is found found, erase it
+    if (it != boxes.end()) {
+        boxes.erase(it);
     }
 }
 

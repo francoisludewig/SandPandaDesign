@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Model/box.cpp \
     Model/cone.cpp \
     Model/disk.cpp \
     Model/elbow.cpp \
@@ -17,16 +18,20 @@ SOURCES += \
     Model/sphere.cpp \
     Model/stripeonsphere.cpp \
     Model/velocity.cpp \
+    Presenter/boxpresenter.cpp \
     Presenter/conepresenter.cpp \
     Presenter/diskpresenter.cpp \
+    Presenter/elbowpresenter.cpp \
     Presenter/messagepresenter.cpp \
     Presenter/planpresenter.cpp \
     Presenter/velocitiespresenter.cpp \
     Presenter/velocitypresenter.cpp \
     Repository/containerrepository.cpp \
     Repository/sphererepository.cpp \
+    boxtablewidget.cpp \
     conetablewidget.cpp \
     disktablewidget.cpp \
+    elbowtablewidget.cpp \
     plantablewidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -34,6 +39,7 @@ SOURCES += \
     velocitiestabwidget.cpp
 
 HEADERS += \
+    Model/box.h \
     Model/cone.h \
     Model/disk.h \
     Model/elbow.h \
@@ -42,16 +48,20 @@ HEADERS += \
     Model/sphere.h \
     Model/stripeonsphere.h \
     Model/velocity.h \
+    Presenter/boxpresenter.h \
     Presenter/conepresenter.h \
     Presenter/diskpresenter.h \
+    Presenter/elbowpresenter.h \
     Presenter/messagepresenter.h \
     Presenter/planpresenter.h \
     Presenter/velocitiespresenter.h \
     Presenter/velocitypresenter.h \
     Repository/containerrepository.h \
     Repository/sphererepository.h \
+    boxtablewidget.h \
     conetablewidget.h \
     disktablewidget.h \
+    elbowtablewidget.h \
     plantablewidget.h \
     mainwindow.h \
     myglwidget.h \

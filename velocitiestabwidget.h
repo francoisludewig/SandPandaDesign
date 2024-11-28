@@ -13,13 +13,14 @@ public:
     VelocitiesTabWidget() = default;
 
     void update();
-    void addElbow(std::shared_ptr<Elbow> s) {}
 
     void buildConnections(QString suffix);
     void addVelocityWidget(QTableWidget *vw, std::string name, VelocitiesPresenter &vpIte);
 public slots:
     void addSolid(std::shared_ptr<Solid> s);
+    void addElbow(std::shared_ptr<Elbow> s);
     void removeSolid(int index);
+    void removeElbow(int index);
     void on_new_value(QTableWidgetItem*);
 
 private:

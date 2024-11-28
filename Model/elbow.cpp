@@ -9,7 +9,17 @@
 #define N2 15
 
 Elbow::Elbow() {
+    xi = 0.0;
+    yi = -0.25;
+    zi = 0.0;
+    xf = 0.0;
+    yf = 0.0;
+    zf = 0.25;
+    cx = 0.0;
+    cy = 0.0;
+    cz = 1.0;
     radius = 0.1;
+    base();
 }
 
 void Elbow::ReadFromFile(FILE *ft)
@@ -165,4 +175,58 @@ double Elbow::ComputeScale() const
             zoom0 = c.ComputeScale();
     }
     return zoom0;
+}
+
+void Elbow::base()
+{
+    double norme = sqrt(cx*cx+cy*cy+cz*cz);
+    cx = cx/norme;
+    cy = cy/norme;
+    cz = cz/norme;
+    double lx = xf-xi;
+    double ly = yf-yi;
+    double lz = zf-zi;
+    double l = sqrt(lx*lx+ly*ly+lz*lz);
+    double theta = acos((lx*cx+ly*cy+lz*cz)/l);
+    alpha = 2*theta;
+    if(alpha > pow(10,-3) && fabs(3.141592-alpha) > pow(10,-3))
+        Rc = fabs(sin(3.141592/2.-theta)/sin(alpha)*l);
+    else
+        Rc = l/2;
+
+    double cpx,cpy,cpz;
+    double c2 = (cx*lx+cy*ly+cz*lz)/l;
+    double b = 1./(sqrt(1+c2*c2));
+    cpx = -b*(cx*lx+cy*ly+cz*lz)*cx+b*lx;
+    cpy = -b*(cx*lx+cy*ly+cz*lz)*cy+b*ly;
+    cpz = -b*(cx*lx+cy*ly+cz*lz)*cz+b*lz;
+    norme = sqrt(cpx*cpx+cpy*cpy+cpz*cpz);
+    cpx = cpx/norme;
+    cpy = cpy/norme;
+    cpz = cpz/norme;
+
+    xr = xi - Rc*cpx;
+    yr = yi - Rc*cpy;
+    zr = zi - Rc*cpz;
+
+    double d = sqrt((xr-xf)*(xr-xf)+(yr-yf)*(yr-yf)+(zr-zf)*(zr-zf));
+    if(fabs(d-Rc) > pow(10,-5)){
+        cpx = -cpx;
+        cpy = -cpy;
+        cpz = -cpz;
+        xr = xi - Rc*cpx;
+        yr = yi - Rc*cpy;
+        zr = zi - Rc*cpz;
+    }
+
+    // Définition de la base
+    nx = cx;
+    ny = cy;
+    nz = cz;
+    tx = cpx;
+    ty = cpy;
+    tz = cpz;
+    sx = ny*tz-nz*ty;
+    sy = tx*nz-tz*nx;
+    sz = nx*ty-ny*tx;
 }

@@ -110,7 +110,7 @@ void Cone::setTop(bool activate)
         Disk disk{};
         this->top = std::make_shared<Disk>(disk);
     } else {
-        this->top = nullptr;
+        this->top.reset();
     }
 }
 
@@ -120,7 +120,7 @@ void Cone::setBottom(bool activate)
         Disk disk{};
         this->bottom = std::make_shared<Disk>(disk);
     }else {
-        this->bottom = nullptr;
+        this->bottom.reset();
     }
 }
 
