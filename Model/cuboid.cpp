@@ -1,6 +1,6 @@
-#include "box.h"
+#include "cuboid.h"
 
-Box::Box():Solid() {
+Cuboid::Cuboid():Solid() {
     la = 0.25;
     Lo = 0.25;
     h= 0.5;
@@ -17,7 +17,7 @@ Box::Box():Solid() {
     p4 = std::make_shared<Plan>(plan4);
 }
 
-void Box::Draw(bool isLineContainer) {
+void Cuboid::Draw(bool isLineContainer) {
     p1->Draw(isLineContainer);
     p2->Draw(isLineContainer);
     p3->Draw(isLineContainer);
@@ -26,7 +26,7 @@ void Box::Draw(bool isLineContainer) {
     if(top != nullptr) top->Draw(isLineContainer);
 }
 
-double Box::ComputeScale() {
+double Cuboid::ComputeScale() {
     double px,py,pz,zoom;
     this->base();
     px = x+h/2*nx+Lo/2*tx+la/2*sx;
@@ -43,7 +43,7 @@ double Box::ComputeScale() {
 }
 
 
-void Box::setTop(bool activate) {
+void Cuboid::setTop(bool activate) {
     if(activate) {
         Plan plan{};
         this->top = std::make_shared<Plan>(plan);
@@ -52,7 +52,7 @@ void Box::setTop(bool activate) {
     }
 }
 
-void Box::setBottom(bool activate){
+void Cuboid::setBottom(bool activate){
     if(activate) {
         Plan plan{};
         this->bottom = std::make_shared<Plan>(plan);
@@ -62,7 +62,7 @@ void Box::setBottom(bool activate){
 }
 
 
-void Box::updateVelocityPlans(std::shared_ptr<Plan> p) {
+void Cuboid::updateVelocityPlans(std::shared_ptr<Plan> p) {
     p->vx = vx;
     p->vy = vy;
     p->vz = vz;
@@ -74,7 +74,7 @@ void Box::updateVelocityPlans(std::shared_ptr<Plan> p) {
     p->orz = orz;
 }
 
-void Box::updatePlans() {
+void Cuboid::updatePlans() {
     updateVelocityPlans(p1);
     updateVelocityPlans(p2);
     updateVelocityPlans(p3);
@@ -156,8 +156,8 @@ void Box::updatePlans() {
         bottom->dt = Lo;
         bottom->ds = la;
         bottom->x = x-nx*h/2.;
-        bottom->y = y-nx*h/2.;
-        bottom->z = z-nx*h/2.;
+        bottom->y = y-ny*h/2.;
+        bottom->z = z-nz*h/2.;
     }
     if(top != nullptr){
         top->nx = -nx;
@@ -172,8 +172,8 @@ void Box::updatePlans() {
         top->dt = Lo;
         top->ds = la;
         top->x = x+nx*h/2.;
-        top->y = y+nx*h/2.;
-        top->z = z+nx*h/2.;
+        top->y = y+ny*h/2.;
+        top->z = z+nz*h/2.;
     }
 }
 

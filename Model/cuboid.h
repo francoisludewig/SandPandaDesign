@@ -1,15 +1,15 @@
-#ifndef BOX_H
-#define BOX_H
+#ifndef CUBOID_H
+#define CUBOID_H
 
 #include<memory>
 
 #include "solid.h"
 #include "plan.h"
 
-class Box : public Solid
+class Cuboid : public Solid
 {
 public:
-    Box();
+    Cuboid();
     void Draw(bool isLineContainer);
     double ComputeScale();
 
@@ -28,4 +28,4 @@ public:
     double xmax,ymax,zmax;
 };
 
-#endif // BOX_H
+#endif // CUBOID_H
