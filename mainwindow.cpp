@@ -31,7 +31,6 @@ void MainWindow::InitDiskTab(MyGLWidget* myGLWidget)
     connect(disktable, &DiskTableWidget::data_updated, myGLWidget, &MyGLWidget::on_new_data);
     connect(disktable, &DiskTableWidget::new_disk, velocitiesDiskTabWidget, &VelocitiesTabWidget::addSolid);
     connect(disktable, &DiskTableWidget::remove_disk, velocitiesDiskTabWidget, &VelocitiesTabWidget::removeSolid);
-    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     velocitiesDiskTabWidget->buildConnections("_disk");
 }
 
@@ -47,7 +46,6 @@ void MainWindow::InitConeTab(MyGLWidget* myGLWidget)
     connect(table, &ConeTableWidget::data_updated, myGLWidget, &MyGLWidget::on_new_data);
     connect(table, &ConeTableWidget::new_cone, velocitiesTabWidget, &VelocitiesTabWidget::addSolid);
     connect(table, &ConeTableWidget::remove_cone, velocitiesTabWidget, &VelocitiesTabWidget::removeSolid);
-    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     velocitiesTabWidget->buildConnections("_cone");
 }
 
@@ -64,7 +62,6 @@ void MainWindow::InitElbowTab(MyGLWidget* myGLWidget)
     connect(table, &ElbowTableWidget::data_updated, myGLWidget, &MyGLWidget::on_new_data);
     connect(table, &ElbowTableWidget::new_elbow, velocitiesTabWidget, &VelocitiesTabWidget::addElbow);
     connect(table, &ElbowTableWidget::remove_elbow, velocitiesTabWidget, &VelocitiesTabWidget::removeElbow);
-    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     velocitiesTabWidget->buildConnections("_elbow");
 }
 
@@ -82,7 +79,6 @@ void MainWindow::InitCuboidTab(MyGLWidget* myGLWidget)
     connect(table, &CuboidTableWidget::data_updated, myGLWidget, &MyGLWidget::on_new_data);
     connect(table, &CuboidTableWidget::new_cuboid, velocitiesTabWidget, &VelocitiesTabWidget::addSolid);
     connect(table, &CuboidTableWidget::remove_cuboid, velocitiesTabWidget, &VelocitiesTabWidget::removeSolid);
-    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     velocitiesTabWidget->buildConnections("_cuboid");
 }
 
@@ -99,6 +95,10 @@ MainWindow::MainWindow(QWidget *parent)
     InitConeTab(myGLWidget);
     InitElbowTab(myGLWidget);
     InitCuboidTab(myGLWidget);
+
+    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
+    connect(ui->containerComboBox, &QComboBox::currentIndexChanged, myGLWidget, &MyGLWidget::on_new_container_visual_parameter);
+
 
     MessagePresenter::getInstance().SetLabel(ui->messageLabel);
     MessagePresenter::getInstance().AddMessage("SandPandaDesign");

@@ -112,7 +112,6 @@ void Cuboid::updatePlans() {
     p2->y = (y+sy*Lo/2.);
     p2->z = (z+sz*Lo/2.);
 
-
     p3->nx = tx;
     p3->ny = ty;
     p3->nz = tz;
@@ -176,4 +175,3 @@ void Cuboid::updatePlans() {
         top->z = z+nz*h/2.;
     }
 }
-

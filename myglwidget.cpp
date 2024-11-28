@@ -229,16 +229,20 @@ void MyGLWidget::paintGL()
 }
 
 
-void MyGLWidget::on_new_container_visual_parameter(std::string directory)
+void MyGLWidget::on_new_container_visual_parameter(int index)
 {
-    if(directory.compare("Full Container") == 0) {
+    switch(index) {
+    case 0 :
         drawContainer = true;
         isLineContainer = false;
-    } else if(directory.compare("Line Container") == 0) {
+        break;
+    case 1:
         drawContainer = true;
         isLineContainer = true;
-    } else {
+        break;
+    case 2:
         drawContainer = false;
+        break;
     }
     update();
 }

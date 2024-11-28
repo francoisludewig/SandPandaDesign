@@ -6,8 +6,6 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
-#include <string>
-
 class MyGLWidget : public QOpenGLWidget, public QOpenGLFunctions
 {
     Q_OBJECT
@@ -58,7 +56,7 @@ signals:
 
 public slots:
     //void loadDirectory(std::string directory);
-    void on_new_container_visual_parameter(std::string directory);
+    void on_new_container_visual_parameter(int index);
     void on_new_data();
     void on_new_drawBase_state(int);
 };
