@@ -1669,11 +1669,11 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="box">
+    <widget class="QWidget" name="cuboid">
      <attribute name="title">
-      <string>Box</string>
+      <string>Cuboid</string>
      </attribute>
-     <widget class="VelocitiesTabWidget" name="boxVelocitiesTabWidget">
+     <widget class="VelocitiesTabWidget" name="cuboidVelocitiesTabWidget">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -1683,13 +1683,13 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tab_31">
        <attribute name="title">
         <string>Vx</string>
        </attribute>
-       <widget class="QTableWidget" name="vxTableWidget_box">
+       <widget class="QTableWidget" name="vxTableWidget_cuboid">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1739,7 +1739,7 @@
        <attribute name="title">
         <string>Vy</string>
        </attribute>
-       <widget class="QTableWidget" name="vyTableWidget_box">
+       <widget class="QTableWidget" name="vyTableWidget_cuboid">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1786,7 +1786,7 @@
        <attribute name="title">
         <string>Vz</string>
        </attribute>
-       <widget class="QTableWidget" name="vzTableWidget_box">
+       <widget class="QTableWidget" name="vzTableWidget_cuboid">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1833,7 +1833,7 @@
        <attribute name="title">
         <string>Wx</string>
        </attribute>
-       <widget class="QTableWidget" name="wxTableWidget_box">
+       <widget class="QTableWidget" name="wxTableWidget_cuboid">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1883,7 +1883,7 @@
        <attribute name="title">
         <string>Wy</string>
        </attribute>
-       <widget class="QTableWidget" name="wyTableWidget_box">
+       <widget class="QTableWidget" name="wyTableWidget_cuboid">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1930,7 +1930,7 @@
        <attribute name="title">
         <string>Wz</string>
        </attribute>
-       <widget class="QTableWidget" name="wzTableWidget_box">
+       <widget class="QTableWidget" name="wzTableWidget_cuboid">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1974,7 +1974,7 @@
        </widget>
       </widget>
      </widget>
-     <widget class="ElbowTableWidget" name="boxTableWidget">
+     <widget class="CuboidTableWidget" name="cuboidTableWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -2059,7 +2059,7 @@
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="removeBoxPushButton">
+     <widget class="QPushButton" name="removeCuboidPushButton">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -2072,7 +2072,7 @@
        <string>Remove</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="addBoxPushButton">
+     <widget class="QPushButton" name="addCuboidPushButton">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -2209,7 +2209,7 @@
      <x>0</x>
      <y>0</y>
      <width>1213</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -2245,7 +2245,12 @@
   <customwidget>
    <class>ElbowTableWidget</class>
    <extends>QTableWidget</extends>
-   <header location="global">elbowtablewidget.h</header>
+   <header>elbowtablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CuboidTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">cuboidtablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

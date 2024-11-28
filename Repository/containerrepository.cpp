@@ -18,6 +18,8 @@ void ContainerRepository::Draw(bool isLineContainer)
         cone->Draw(isLineContainer);
     for(auto elbow : elbows)
         elbow->Draw(isLineContainer);
+    for(auto cuboid : cuboids)
+        cuboid->Draw(isLineContainer);
 
 }
 
@@ -108,12 +110,12 @@ std::shared_ptr<Elbow> ContainerRepository::AddElbow()
     return elbow_ptr;
 }
 
-std::shared_ptr<Box> ContainerRepository::AddBox()
+std::shared_ptr<Cuboid> ContainerRepository::AddCuboid()
 {
-    Box box{};
-    auto box_ptr = std::make_shared<Box>(box);
-    boxes.push_back(box_ptr);
-    return box_ptr;
+    Cuboid cuboid{};
+    auto cuboid_ptr = std::make_shared<Cuboid>(cuboid);
+    cuboids.push_back(cuboid_ptr);
+    return cuboid_ptr;
 }
 
 
@@ -162,13 +164,13 @@ void ContainerRepository::RemoveElbow(std::shared_ptr<Elbow> elbow) {
     }
 }
 
-void ContainerRepository::RemoveBox(std::shared_ptr<Box> box) {
-    auto it = std::find(boxes.begin(), boxes.end(),
-                        box);
+void ContainerRepository::RemoveCuboid(std::shared_ptr<Cuboid> cuboid) {
+    auto it = std::find(cuboids.begin(), cuboids.end(),
+                        cuboid);
 
     // If element is found found, erase it
-    if (it != boxes.end()) {
-        boxes.erase(it);
+    if (it != cuboids.end()) {
+        cuboids.erase(it);
     }
 }
 

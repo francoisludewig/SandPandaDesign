@@ -9,8 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Model/box.cpp \
     Model/cone.cpp \
+    Model/cuboid.cpp \
     Model/disk.cpp \
     Model/elbow.cpp \
     Model/plan.cpp \
@@ -18,8 +18,8 @@ SOURCES += \
     Model/sphere.cpp \
     Model/stripeonsphere.cpp \
     Model/velocity.cpp \
-    Presenter/boxpresenter.cpp \
     Presenter/conepresenter.cpp \
+    Presenter/cuboidpresenter.cpp \
     Presenter/diskpresenter.cpp \
     Presenter/elbowpresenter.cpp \
     Presenter/messagepresenter.cpp \
@@ -28,8 +28,8 @@ SOURCES += \
     Presenter/velocitypresenter.cpp \
     Repository/containerrepository.cpp \
     Repository/sphererepository.cpp \
-    boxtablewidget.cpp \
     conetablewidget.cpp \
+    cuboidtablewidget.cpp \
     disktablewidget.cpp \
     elbowtablewidget.cpp \
     plantablewidget.cpp \
@@ -39,8 +39,8 @@ SOURCES += \
     velocitiestabwidget.cpp
 
 HEADERS += \
-    Model/box.h \
     Model/cone.h \
+    Model/cuboid.h \
     Model/disk.h \
     Model/elbow.h \
     Model/plan.h \
@@ -48,8 +48,8 @@ HEADERS += \
     Model/sphere.h \
     Model/stripeonsphere.h \
     Model/velocity.h \
-    Presenter/boxpresenter.h \
     Presenter/conepresenter.h \
+    Presenter/cuboidpresenter.h \
     Presenter/diskpresenter.h \
     Presenter/elbowpresenter.h \
     Presenter/messagepresenter.h \
@@ -58,8 +58,8 @@ HEADERS += \
     Presenter/velocitypresenter.h \
     Repository/containerrepository.h \
     Repository/sphererepository.h \
-    boxtablewidget.h \
     conetablewidget.h \
+    cuboidtablewidget.h \
     disktablewidget.h \
     elbowtablewidget.h \
     plantablewidget.h \

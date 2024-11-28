@@ -69,6 +69,24 @@ void MainWindow::InitElbowTab(MyGLWidget* myGLWidget)
 }
 
 
+
+void MainWindow::InitCuboidTab(MyGLWidget* myGLWidget)
+{
+    QPushButton* addButton = (QPushButton*)(ui->addCuboidPushButton);
+    QPushButton* removeButton = (QPushButton*)(ui->removeCuboidPushButton);
+    CuboidTableWidget* table = (CuboidTableWidget*)(ui->cuboidTableWidget);
+    VelocitiesTabWidget* velocitiesTabWidget = ( VelocitiesTabWidget*)(ui->cuboidVelocitiesTabWidget);
+    connect(addButton, &QPushButton::clicked, table, &CuboidTableWidget::on_add_cuboid);
+    connect(removeButton, &QPushButton::clicked, table, &CuboidTableWidget::on_remove_cuboid);
+    connect(table, &CuboidTableWidget::itemChanged, table, &CuboidTableWidget::on_new_value);
+    connect(table, &CuboidTableWidget::data_updated, myGLWidget, &MyGLWidget::on_new_data);
+    connect(table, &CuboidTableWidget::new_cuboid, velocitiesTabWidget, &VelocitiesTabWidget::addSolid);
+    connect(table, &CuboidTableWidget::remove_cuboid, velocitiesTabWidget, &VelocitiesTabWidget::removeSolid);
+    connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
+    velocitiesTabWidget->buildConnections("_cuboid");
+}
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -80,6 +98,7 @@ MainWindow::MainWindow(QWidget *parent)
     InitDiskTab(myGLWidget);
     InitConeTab(myGLWidget);
     InitElbowTab(myGLWidget);
+    InitCuboidTab(myGLWidget);
 
     MessagePresenter::getInstance().SetLabel(ui->messageLabel);
     MessagePresenter::getInstance().AddMessage("SandPandaDesign");

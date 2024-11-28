@@ -9,7 +9,7 @@
 #include "Model/disk.h"
 #include "Model/cone.h"
 #include "Model/elbow.h"
-#include "Model/box.h"
+#include "Model/cuboid.h"
 
 class ContainerRepository
 {
@@ -21,13 +21,13 @@ public:
     std::shared_ptr<Disk> AddDisk();
     std::shared_ptr<Cone> AddCone();
     std::shared_ptr<Elbow> AddElbow();
-    std::shared_ptr<Box> AddBox();
+    std::shared_ptr<Cuboid> AddCuboid();
 
     void RemovePlan(std::shared_ptr<Plan> plan);
     void RemoveDisk(std::shared_ptr<Disk> disk);
     void RemoveCone(std::shared_ptr<Cone> cone);
     void RemoveElbow(std::shared_ptr<Elbow> elbow);
-    void RemoveBox(std::shared_ptr<Box> box);
+    void RemoveCuboid(std::shared_ptr<Cuboid> cuboid);
     double ComputeZoom();
 private:
     ContainerRepository(); // Prevent construction
@@ -39,7 +39,7 @@ private:
     std::vector<std::shared_ptr<Disk> > disks {};
     std::vector<std::shared_ptr<Cone> > cones {};
     std::vector<std::shared_ptr<Elbow> > elbows {};
-    std::vector<std::shared_ptr<Box> > boxes {};
+    std::vector<std::shared_ptr<Cuboid> > cuboids {};
 };
 
 #endif // CONTAINERREPOSITORY_H
