@@ -1,4 +1,5 @@
 #include "velocity.h"
+#include<cmath>
 
 Velocity::Velocity() {
     A0 = 0;
@@ -10,4 +11,8 @@ Velocity::Velocity() {
 void Velocity::ReadFromFile(FILE *ft)
 {
     fscanf_s(ft,"%lf\t%lf\t%lf\t%lf\n",&A0,&A1,&w,&p);
+}
+
+double Velocity::valueat(double t) {
+    return(A0+A1*w*sin(w*t+p));
 }

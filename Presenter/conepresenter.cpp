@@ -75,12 +75,14 @@ void ConePresenter::updateWidget()
 void ConePresenter::updateModel()
 {
     printf("updateModel\n");
-    cone->x = widgets["x"]->text().toDouble();
-    cone->y = widgets["y"]->text().toDouble();
-    cone->z = widgets["z"]->text().toDouble();
-    cone->nx = widgets["nx"]->text().toDouble();
-    cone->ny = widgets["ny"]->text().toDouble();
-    cone->nz = widgets["nz"]->text().toDouble();
+    if(!cone->isAnimated) {
+        cone->x = widgets["x"]->text().toDouble();
+        cone->y = widgets["y"]->text().toDouble();
+        cone->z = widgets["z"]->text().toDouble();
+        cone->nx = widgets["nx"]->text().toDouble();
+        cone->ny = widgets["ny"]->text().toDouble();
+        cone->nz = widgets["nz"]->text().toDouble();
+    }
     cone->r0 = widgets["r0"]->text().toDouble();
     cone->r1 = widgets["r1"]->text().toDouble();
     cone->h = widgets["h"]->text().toDouble();

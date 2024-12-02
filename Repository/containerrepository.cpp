@@ -10,18 +10,60 @@ ContainerRepository& ContainerRepository::getInstance()
 
 void ContainerRepository::Draw(bool isLineContainer)
 {
-    for(auto plan : plans)
+    for(auto& plan : plans)
         plan->Draw(isLineContainer);
-    for(auto disk : disks)
+    for(auto& disk : disks)
         disk->Draw(isLineContainer);
-    for(auto cone : cones)
+    for(auto& cone : cones)
         cone->Draw(isLineContainer);
-    for(auto elbow : elbows)
+    for(auto& elbow : elbows)
         elbow->Draw(isLineContainer);
-    for(auto cuboid : cuboids)
+    for(auto& cuboid : cuboids)
         cuboid->Draw(isLineContainer);
 
 }
+
+void ContainerRepository::Move(double t, double h) {
+    for(auto& plan : plans)
+        plan->moveat(t, h);
+    for(auto& disk : disks)
+        disk->moveat(t, h);
+    for(auto& cone : cones)
+        cone->moveat(t, h);
+    for(auto elbow : elbows)
+        elbow->moveat(t, h);
+    for(auto& cuboid : cuboids)
+        cuboid->moveat(t, h);
+}
+
+
+
+void ContainerRepository::StartAnimation() {
+    for(auto& plan : plans)
+        plan->startAnime();
+    for(auto& disk : disks)
+        disk->startAnime();
+    for(auto& cone : cones)
+        cone->startAnime();
+    for(auto elbow : elbows)
+        elbow->startAnime();
+    for(auto& cuboid : cuboids)
+        cuboid->startAnime();
+}
+
+void ContainerRepository::StopAnimation() {
+    for(auto& plan : plans)
+        plan->stopAnime();
+    for(auto& disk : disks)
+        disk->stopAnime();
+    for(auto& cone : cones)
+        cone->stopAnime();
+    for(auto elbow : elbows)
+        elbow->stopAnime();
+    for(auto& cuboid : cuboids)
+        cuboid->stopAnime();
+}
+
 
 void ContainerRepository::load(std::string directory)
 {

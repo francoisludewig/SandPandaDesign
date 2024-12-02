@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Animation/animation.cpp \
     Model/cone.cpp \
     Model/cuboid.cpp \
     Model/disk.cpp \
@@ -28,17 +29,19 @@ SOURCES += \
     Presenter/velocitypresenter.cpp \
     Repository/containerrepository.cpp \
     Repository/sphererepository.cpp \
-    conetablewidget.cpp \
-    cuboidtablewidget.cpp \
-    disktablewidget.cpp \
-    elbowtablewidget.cpp \
-    plantablewidget.cpp \
+    Widgets/animationwidget.cpp \
+    Widgets/conetablewidget.cpp \
+    Widgets/cuboidtablewidget.cpp \
+    Widgets/disktablewidget.cpp \
+    Widgets/elbowtablewidget.cpp \
+    Widgets/myglwidget.cpp \
+    Widgets/plantablewidget.cpp \
+    Widgets/velocitiestabwidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    myglwidget.cpp \
-    velocitiestabwidget.cpp
 
 HEADERS += \
+    Animation/animation.h \
     Model/cone.h \
     Model/cuboid.h \
     Model/disk.h \
@@ -58,14 +61,16 @@ HEADERS += \
     Presenter/velocitypresenter.h \
     Repository/containerrepository.h \
     Repository/sphererepository.h \
-    conetablewidget.h \
-    cuboidtablewidget.h \
-    disktablewidget.h \
-    elbowtablewidget.h \
-    plantablewidget.h \
+    Widgets/animationwidget.h \
+    Widgets/conetablewidget.h \
+    Widgets/cuboidtablewidget.h \
+    Widgets/disktablewidget.h \
+    Widgets/elbowtablewidget.h \
+    Widgets/myglwidget.h \
+    Widgets/plantablewidget.h \
+    Widgets/velocitiestablewidget.h \
+    Widgets/velocitiestabwidget.h \
     mainwindow.h \
-    myglwidget.h \
-    velocitiestabwidget.h
 
 FORMS += \
     mainwindow.ui

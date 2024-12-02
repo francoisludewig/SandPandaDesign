@@ -1,6 +1,7 @@
 #include "solid.h"
 
 #include <qmath.h>
+#include <iostream>
 
 Solid::Solid() {}
 
@@ -33,10 +34,10 @@ void Solid::ReadFromFile(FILE *ft)
 void Solid::base()
 {
     float norme = sqrt(nx*nx+ny*ny+nz*nz);
-    double R00,R01,R02;
-    double R10,R11,R12;
-    double R20,R21,R22;
-    double dx,dy,dz;
+    //double R00,R01,R02;
+    //double R10,R11,R12;
+    //double R20,R21,R22;
+    //double dx,dy,dz;
 
     nx = nx/norme;
     ny = ny/norme;
@@ -98,4 +99,111 @@ void Solid::base()
     sy = dy;
     sz = dz;
     */
+}
+
+
+void Solid::moveat(double t, double h){
+    Vx = vx.valueat(t);
+    Vy = vy.valueat(t);
+    Vz = vz.valueat(t);
+
+    Wx = wx.valueat(t)*h;
+    Wy = wy.valueat(t)*h;
+    Wz = wz.valueat(t)*h;
+    x += Vx*h;
+    y += Vy*h;
+    z += Vz*h;
+    std::cout << "t = " << t << ", h = " << h << std::endl;
+    std::cout << x0 << "->" << x << "(Vx = " << Vx << ")" << std::endl;
+    double W = sqrt(Wx*Wx+Wy*Wy+Wz*Wz);
+    double Ca = cos(W),Sa = sin(W);
+    if(W != 0){
+        Wx = Wx/W;
+        Wy = Wy/W;
+        Wz = Wz/W;
+
+        //      | wx^2+Ca*(1-wx^2)       wx*wy*(1-Ca)-wz*Sa     wx*wz*(1-Ca)+wy*Sa |
+        //[R] = | wx*wy*(1-Ca)+wz*Sa     wy^2+Ca*(1-wy^2)       wy*wz*(1-Ca)-wx*Sa |
+        //      | wx*wz*(1-Ca)-wy*Sa     wy*wz*(1-Ca)+wx*Sa     wz^2+Ca*(1-wz^2)   |
+
+        R[0][0] = Wx*Wx+Ca*(1-Wx*Wx);
+        R[0][1] = Wx*Wy*(1-Ca)-Wz*Sa;
+        R[0][2] = Wx*Wz*(1-Ca)+Wy*Sa;
+
+        R[1][0] = Wx*Wy*(1-Ca)+Wz*Sa;
+        R[1][1] = Wy*Wy+Ca*(1-Wy*Wy);
+        R[1][2] = Wy*Wz*(1-Ca)-Wx*Sa;
+
+        R[2][0] = Wx*Wz*(1-Ca)-Wy*Sa;
+        R[2][1] = Wy*Wz*(1-Ca)+Wx*Sa;
+        R[2][2] = Wz*Wz+Ca*(1-Wz*Wz);
+    }
+    else{
+        R[0][0] = 1;
+        R[0][1] = 0;
+        R[0][2] = 0;
+
+        R[1][0] = 0;
+        R[1][1] = 1;
+        R[1][2] = 0;
+
+        R[2][0] = 0;
+        R[2][1] = 0;
+        R[2][2] = 1;
+    }
+
+    double lx,ly,lz;
+
+    lx = (x-orx);
+    ly = (y-ory);
+    lz = (z-orz);
+
+    x = (R[0][0]*lx + R[0][1]*ly + R[0][2]*lz) + orx;
+    y = (R[1][0]*lx + R[1][1]*ly + R[1][2]*lz) + ory;
+    z = (R[2][0]*lx + R[2][1]*ly + R[2][2]*lz) + orz;
+
+    lx = nx;
+    ly = ny;
+    lz = nz;
+    nx = (R[0][0]*lx + R[0][1]*ly + R[0][2]*lz);
+    ny = (R[1][0]*lx + R[1][1]*ly + R[1][2]*lz);
+    nz = (R[2][0]*lx + R[2][1]*ly + R[2][2]*lz);
+
+    lx = tx;
+    ly = ty;
+    lz = tz;
+    tx = (R[0][0]*lx + R[0][1]*ly + R[0][2]*lz);
+    ty = (R[1][0]*lx + R[1][1]*ly + R[1][2]*lz);
+    tz = (R[2][0]*lx + R[2][1]*ly + R[2][2]*lz);
+
+    lx = sx;
+    ly = sy;
+    lz = sz;
+    sx = (R[0][0]*lx + R[0][1]*ly + R[0][2]*lz);
+    sy = (R[1][0]*lx + R[1][1]*ly + R[1][2]*lz);
+    sz = (R[2][0]*lx + R[2][1]*ly + R[2][2]*lz);
+}
+
+
+void Solid::startAnime() {
+    std::cout << "startAnime => Save Solid State" << std::endl;
+    isAnimated = true;
+    x0 = x;
+    y0 = y;
+    z0 = z;
+    nx0 = nx;
+    ny0 = ny;
+    nz0 = nz;
+}
+
+void Solid::stopAnime(){
+    std::cout << "stopAnime => Reset Solid" << std::endl;
+    isAnimated = false;
+    x = x0;
+    y = y0;
+    z = z0;
+    nx = nx0;
+    ny = ny0;
+    nz = nz0;
+    base();
 }

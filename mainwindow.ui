@@ -2130,7 +2130,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="playPushButton">
      <property name="geometry">
       <rect>
        <x>240</x>
@@ -2143,7 +2143,7 @@
       <string>Play</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="stopPushButton">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -2169,7 +2169,7 @@
       <string>Time step</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="timeStepField">
      <property name="geometry">
       <rect>
        <x>490</x>

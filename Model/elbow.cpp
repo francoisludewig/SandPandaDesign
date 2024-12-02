@@ -5,6 +5,8 @@
 
 #include "cone.h"
 
+#include<iostream>
+
 #define N1 15
 #define N2 15
 
@@ -39,6 +41,119 @@ void Elbow::ReadFromFile(FILE *ft)
     fscanf_s(ft,"%lf\t%lf\t%lf\n",&orx,&ory,&orz);
     fscanf_s(ft,"%lf\t%lf\t%lf\n",&Rc,&alpha,&radius);
 }
+
+
+
+void Elbow::moveat(double t, double h){
+    Vx = vx.valueat(t);
+    Vy = vy.valueat(t);
+    Vz = vz.valueat(t);
+
+    Wx = wx.valueat(t)*h;
+    Wy = wy.valueat(t)*h;
+    Wz = wz.valueat(t)*h;
+    xi += Vx*h;
+    yi += Vy*h;
+    zi += Vz*h;
+    xf += Vx*h;
+    yf += Vy*h;
+    zf += Vz*h;
+
+    double W = sqrt(Wx*Wx+Wy*Wy+Wz*Wz);
+    double Ca = cos(W),Sa = sin(W);
+    if(W != 0){
+        Wx = Wx/W;
+        Wy = Wy/W;
+        Wz = Wz/W;
+
+        //      | wx^2+Ca*(1-wx^2)       wx*wy*(1-Ca)-wz*Sa     wx*wz*(1-Ca)+wy*Sa |
+        //[R] = | wx*wy*(1-Ca)+wz*Sa     wy^2+Ca*(1-wy^2)       wy*wz*(1-Ca)-wx*Sa |
+        //      | wx*wz*(1-Ca)-wy*Sa     wy*wz*(1-Ca)+wx*Sa     wz^2+Ca*(1-wz^2)   |
+
+        Rot[0][0] = Wx*Wx+Ca*(1-Wx*Wx) ;
+        Rot[0][1] = Wx*Wy*(1-Ca)-Wz*Sa;
+        Rot[0][2] = Wx*Wz*(1-Ca)+Wy*Sa;
+
+        Rot[1][0] = Wx*Wy*(1-Ca)+Wz*Sa;
+        Rot[1][1] = Wy*Wy+Ca*(1-Wy*Wy);
+        Rot[1][2] = Wy*Wz*(1-Ca)-Wx*Sa;
+
+        Rot[2][0] = Wx*Wz*(1-Ca)-Wy*Sa;
+        Rot[2][1] = Wy*Wz*(1-Ca)+Wx*Sa;
+        Rot[2][2] = Wz*Wz+Ca*(1-Wz*Wz);
+    }
+    else{
+        Rot[0][0] = 1;
+        Rot[0][1] = 0;
+        Rot[0][2] = 0;
+
+        Rot[1][0] = 0;
+        Rot[1][1] = 1;
+        Rot[1][2] = 0;
+
+        Rot[2][0] = 0;
+        Rot[2][1] = 0;
+        Rot[2][2] = 1;
+    }
+    double lx,ly,lz;
+
+    lx = (xi-orx);
+    ly = (yi-ory);
+    lz = (zi-orz);
+
+    xi = (Rot[0][0]*lx + Rot[0][1]*ly + Rot[0][2]*lz) + orx;
+    yi = (Rot[1][0]*lx + Rot[1][1]*ly + Rot[1][2]*lz) + ory;
+    zi = (Rot[2][0]*lx + Rot[2][1]*ly + Rot[2][2]*lz) + orz;
+
+    lx = (xf-orx);
+    ly = (yf-ory);
+    lz = (zf-orz);
+
+    xf = (Rot[0][0]*lx + Rot[0][1]*ly + Rot[0][2]*lz) + orx;
+    yf = (Rot[1][0]*lx + Rot[1][1]*ly + Rot[1][2]*lz) + ory;
+    zf = (Rot[2][0]*lx + Rot[2][1]*ly + Rot[2][2]*lz) + orz;
+
+    lx = cx;
+    ly = cy;
+    lz = cz;
+    cx = (Rot[0][0]*lx + Rot[0][1]*ly + Rot[0][2]*lz);
+    cy = (Rot[1][0]*lx + Rot[1][1]*ly + Rot[1][2]*lz);
+    cz = (Rot[2][0]*lx + Rot[2][1]*ly + Rot[2][2]*lz);
+    base();
+}
+
+
+void Elbow::startAnime() {
+    std::cout << "startAnime => Save Solid State" << std::endl;
+    isAnimated = true;
+    xi0 = xi;
+    yi0 = yi;
+    zi0 = zi;
+
+    xf0 = xf;
+    yf0 = yf;
+    zf0 = zf;
+
+    cx0 = cx;
+    cy0 = cy;
+    cz0 = cz;
+}
+
+void Elbow::stopAnime(){
+    std::cout << "stopAnime => Reset Solid" << std::endl;
+    isAnimated = false;
+    xi = xi0;
+    yi = yi0;
+    zi = zi0;
+    xf = xf0;
+    yf = yf0;
+    zf = zf0;
+    cx = cx0;
+    cy = cy0;
+    cz = cz0;
+    base();
+}
+
 
 void Elbow::Draw(bool isLineContainer)
 {

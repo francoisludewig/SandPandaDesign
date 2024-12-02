@@ -89,6 +89,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     MyGLWidget* myGLWidget = (MyGLWidget*)(ui->openGLWidget);
+    AnimationWidget* animator = new AnimationWidget(nullptr);
+    animator->init();
+    myGLWidget->setAnimator(animator);
 
     InitPlanTab(myGLWidget);
     InitDiskTab(myGLWidget);
@@ -98,6 +101,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     connect(ui->containerComboBox, &QComboBox::currentIndexChanged, myGLWidget, &MyGLWidget::on_new_container_visual_parameter);
+
+    connect(ui->playPushButton, &QAbstractButton::released, myGLWidget, &MyGLWidget::play);
+    connect(ui->stopPushButton, &QAbstractButton::released, myGLWidget, &MyGLWidget::stop);
+
+    connect(ui->timeStepField, &QLineEdit::textChanged, myGLWidget, &MyGLWidget::on_new_timestep);
+
+    connect(animator, &AnimationWidget::updateView, myGLWidget, &MyGLWidget::on_new_data);
 
 
     MessagePresenter::getInstance().SetLabel(ui->messageLabel);

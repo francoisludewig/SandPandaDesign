@@ -16,6 +16,9 @@ class ContainerRepository
 public:
     static ContainerRepository& getInstance();
     void Draw(bool isLineContainer);
+    void Move(double t, double h);
+    void StartAnimation();
+    void StopAnimation();
     void load(std::string directory);
     std::shared_ptr<Plan> AddPlan();
     std::shared_ptr<Disk> AddDisk();
@@ -35,11 +38,11 @@ private:
     ContainerRepository& operator=(const ContainerRepository&) = default; // Prevent assignment
     ~ContainerRepository() = default; // Prevent unwanted destruction
 
-    std::vector<std::shared_ptr<Plan> > plans {};
-    std::vector<std::shared_ptr<Disk> > disks {};
-    std::vector<std::shared_ptr<Cone> > cones {};
-    std::vector<std::shared_ptr<Elbow> > elbows {};
-    std::vector<std::shared_ptr<Cuboid> > cuboids {};
+    std::vector< std::shared_ptr<Plan> > plans {};
+    std::vector< std::shared_ptr<Disk> > disks {};
+    std::vector< std::shared_ptr<Cone> > cones {};
+    std::vector< std::shared_ptr<Elbow> > elbows {};
+    std::vector< std::shared_ptr<Cuboid> > cuboids {};
 };
 
 #endif // CONTAINERREPOSITORY_H

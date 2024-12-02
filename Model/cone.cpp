@@ -37,6 +37,10 @@ void Cone::Draw(bool isLineContainer)
     double theta;
     double cost = nlz;
     double sint = sqrt(nlx*nlx+nly*nly);
+    /*if(isAnimated) {
+        updateBottom();
+        updateTop();
+    }*/
     if(sint >= 0)
         theta = acos(cost);
     else
@@ -109,6 +113,7 @@ void Cone::setTop(bool activate)
     if(activate) {
         Disk disk{};
         this->top = std::make_shared<Disk>(disk);
+        updateTop();
     } else {
         this->top.reset();
     }
@@ -119,6 +124,7 @@ void Cone::setBottom(bool activate)
     if(activate) {
         Disk disk{};
         this->bottom = std::make_shared<Disk>(disk);
+        updateBottom();
     }else {
         this->bottom.reset();
     }
@@ -133,6 +139,7 @@ void Cone::updateTop()
         top->nx = -nx;
         top->ny = -ny;
         top->nz = -nz;
+        top->base();
         top->r = r1;
         top->inAndOut = inAndOut;
     }
@@ -147,6 +154,7 @@ void Cone::updateBottom()
         bottom->nx = nx;
         bottom->ny = ny;
         bottom->nz = nz;
+        bottom->base();
         bottom->r = r0;
         bottom->inAndOut = inAndOut;
     }

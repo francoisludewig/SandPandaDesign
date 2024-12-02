@@ -1,5 +1,7 @@
 #include "cuboid.h"
 
+#include <iostream>
+
 Cuboid::Cuboid():Solid() {
     la = 0.25;
     Lo = 0.25;
@@ -18,6 +20,7 @@ Cuboid::Cuboid():Solid() {
 }
 
 void Cuboid::Draw(bool isLineContainer) {
+    updatePlans();
     p1->Draw(isLineContainer);
     p2->Draw(isLineContainer);
     p3->Draw(isLineContainer);
@@ -44,18 +47,22 @@ double Cuboid::ComputeScale() {
 
 
 void Cuboid::setTop(bool activate) {
+    std::cout << "SetTop " << activate << std::endl;
     if(activate) {
         Plan plan{};
         this->top = std::make_shared<Plan>(plan);
+        this->updatePlans();
     } else {
         this->top.reset();
     }
 }
 
 void Cuboid::setBottom(bool activate){
+    std::cout << "SetBottom " << activate << std::endl;
     if(activate) {
         Plan plan{};
         this->bottom = std::make_shared<Plan>(plan);
+        this->updatePlans();
     }else {
         this->bottom.reset();
     }

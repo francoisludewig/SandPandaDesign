@@ -14,7 +14,9 @@ public:
     ~Solid() = default;
 
     void base();
-
+    void moveat(double t, double h);
+    void startAnime();
+    void stopAnime();
     virtual void ReadFromFile(FILE *ft);
 
     double x = 0,y = 0,z = 0;
@@ -25,10 +27,15 @@ public:
     Velocity wx,wy,wz;
 
     double beta;
-    double orx,ory,orz;
+    double orx = 0,ory = 0,orz = 0;
     double Vx,Vy,Vz,Wx,Wy,Wz;
+    double R[3][3];
+    double x0 = 0,y0 = 0,z0 = 0;
+    double nx0 = 1,ny0 = 0,nz0 = 0;
     int Ngb;
     int N,Nold;
+
+    bool isAnimated = false;
 };
 
 #endif // SOLID_H

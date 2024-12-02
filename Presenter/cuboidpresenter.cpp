@@ -76,16 +76,18 @@ void CuboidPresenter::updateWidget()
 void CuboidPresenter::updateModel()
 {
     printf("updateModel\n");
-    cuboid->x = widgets["x"]->text().toDouble();
-    cuboid->y = widgets["y"]->text().toDouble();
-    cuboid->z = widgets["z"]->text().toDouble();
-    cuboid->nx = widgets["nx"]->text().toDouble();
-    cuboid->ny = widgets["ny"]->text().toDouble();
-    cuboid->nz = widgets["nz"]->text().toDouble();
+    if(!cuboid->isAnimated) {
+        cuboid->x = widgets["x"]->text().toDouble();
+        cuboid->y = widgets["y"]->text().toDouble();
+        cuboid->z = widgets["z"]->text().toDouble();
+        cuboid->nx = widgets["nx"]->text().toDouble();
+        cuboid->ny = widgets["ny"]->text().toDouble();
+        cuboid->nz = widgets["nz"]->text().toDouble();
+        cuboid->base();
+    }
     cuboid->Lo = widgets["Lo"]->text().toDouble();
     cuboid->la = widgets["la"]->text().toDouble();
     cuboid->h = widgets["h"]->text().toDouble();
-    cuboid->base();
     cuboid->ped = (periodic_CheckBox->checkState() == Qt::CheckState::Checked ? 1 : 0);
     cuboid->setTop(top_CheckBox->checkState() == Qt::CheckState::Checked);
     cuboid->setBottom(bottom_CheckBox->checkState() == Qt::CheckState::Checked);
