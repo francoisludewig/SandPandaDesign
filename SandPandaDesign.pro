@@ -9,7 +9,6 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Animation/animation.cpp \
     Model/cone.cpp \
     Model/cuboid.cpp \
     Model/disk.cpp \
@@ -41,7 +40,6 @@ SOURCES += \
     mainwindow.cpp \
 
 HEADERS += \
-    Animation/animation.h \
     Model/cone.h \
     Model/cuboid.h \
     Model/disk.h \

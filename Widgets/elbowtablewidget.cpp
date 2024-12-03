@@ -26,6 +26,9 @@ void ElbowTableWidget::on_add_elbow()
     this->setItem(currentRow, 7, elbowPresenter.getWidget("ny"));
     this->setItem(currentRow, 8, elbowPresenter.getWidget("nz"));
     this->setItem(currentRow, 9, elbowPresenter.getWidget("r"));
+    this->setItem(currentRow, 10, elbowPresenter.getWidget("orx"));
+    this->setItem(currentRow, 11, elbowPresenter.getWidget("ory"));
+    this->setItem(currentRow, 12, elbowPresenter.getWidget("orz"));
 
     printf("New Elbow !\n");
     emit new_elbow(elbow);

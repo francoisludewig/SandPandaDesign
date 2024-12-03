@@ -21,6 +21,12 @@ ElbowPresenter::ElbowPresenter(std::shared_ptr<Elbow>& elbow) : elbow(elbow) {
     widgets["nz"]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     widgets["r"] = new QTableWidgetItem();
     widgets["r"]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    widgets["orx"] = new QTableWidgetItem();
+    widgets["orx"]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    widgets["ory"] = new QTableWidgetItem();
+    widgets["ory"]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    widgets["orz"] = new QTableWidgetItem();
+    widgets["orz"]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     updateWidget();
 }
@@ -37,6 +43,9 @@ void ElbowPresenter::updateWidget()
     widgets["ny"]->setText(QString::number(elbow->ny));
     widgets["nz"]->setText(QString::number(elbow->nz));
     widgets["r"]->setText(QString::number(elbow->radius));
+    widgets["orx"]->setText(QString::number(elbow->orx));
+    widgets["ory"]->setText(QString::number(elbow->ory));
+    widgets["orz"]->setText(QString::number(elbow->orz));
 }
 
 void ElbowPresenter::updateModel()
@@ -51,6 +60,9 @@ void ElbowPresenter::updateModel()
     elbow->cx = widgets["nx"]->text().toDouble();
     elbow->cy = widgets["ny"]->text().toDouble();
     elbow->cz = widgets["nz"]->text().toDouble();
+    elbow->orx = widgets["orx"]->text().toDouble();
+    elbow->ory = widgets["ory"]->text().toDouble();
+    elbow->orz = widgets["orz"]->text().toDouble();
     elbow->radius = widgets["r"]->text().toDouble();
     elbow->base();
 }

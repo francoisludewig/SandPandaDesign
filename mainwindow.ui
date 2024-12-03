@@ -41,7 +41,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
@@ -1654,6 +1654,21 @@
         <string>r</string>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>orx</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ory</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>orz</string>
+       </property>
+      </column>
      </widget>
      <widget class="QPushButton" name="addElbowPushButton">
       <property name="geometry">
@@ -2247,7 +2262,7 @@
      <x>0</x>
      <y>0</y>
      <width>1213</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
