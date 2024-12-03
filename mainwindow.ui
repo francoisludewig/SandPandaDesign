@@ -32,7 +32,7 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::StrongFocus</enum>
+     <enum>Qt::WheelFocus</enum>
     </property>
     <property name="contextMenuPolicy">
      <enum>Qt::ActionsContextMenu</enum>
@@ -41,7 +41,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
@@ -2154,8 +2154,23 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>BusyCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="text">
       <string>Play</string>
+     </property>
+     <property name="icon">
+      <iconset theme="video-display"/>
+     </property>
+     <property name="autoRepeatDelay">
+      <number>304</number>
+     </property>
+     <property name="default">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="stopPushButton">
@@ -2272,7 +2287,7 @@
   <customwidget>
    <class>PlanTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>plantablewidget.h</header>
+   <header location="global">plantablewidget.h</header>
   </customwidget>
   <customwidget>
    <class>MyGLWidget</class>
@@ -2303,7 +2318,7 @@
   <customwidget>
    <class>CuboidTableWidget</class>
    <extends>QTableWidget</extends>
-   <header location="global">cuboidtablewidget.h</header>
+   <header>cuboidtablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

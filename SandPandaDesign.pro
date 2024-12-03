@@ -70,6 +70,9 @@ HEADERS += \
     Widgets/velocitiestabwidget.h \
     mainwindow.h \
 
+INCLUDEPATH += Widgets \
+
+
 FORMS += \
     mainwindow.ui
 
