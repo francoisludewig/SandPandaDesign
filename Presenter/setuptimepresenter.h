@@ -14,6 +14,7 @@ public:
     void SetDuration(double value);
     void SetTimestep(double value);
     void SetCaptureDelay(double value);
+    double ComputeTimestep();
 
 
 private:

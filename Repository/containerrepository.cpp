@@ -1,7 +1,7 @@
 #include "containerrepository.h"
 
 ContainerRepository::ContainerRepository() {
-    setup = std::make_shared<Setup>();
+    setup = std::make_shared<Setup>(&lattices);
 }
 
 ContainerRepository& ContainerRepository::getInstance()

@@ -2313,9 +2313,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-320</y>
-         <width>562</width>
-         <height>709</height>
+         <y>0</y>
+         <width>565</width>
+         <height>703</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -2340,7 +2340,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>0.0</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_15">
@@ -2366,7 +2366,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>1.0</string>
+            <string>1.05</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_16">
@@ -2470,7 +2470,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>0.9</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_3">
@@ -2509,7 +2509,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>100000</string>
+            <string>10000</string>
            </property>
           </widget>
           <widget class="QComboBox" name="tangentialModelComboBox">
@@ -2555,7 +2555,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>0.5</string>
            </property>
           </widget>
           <widget class="QLabel" name="static_friction_coefficient_label">
@@ -2581,7 +2581,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>0.7</string>
            </property>
           </widget>
          </widget>
@@ -2659,7 +2659,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>9.81</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="gravity_x_direction_field">
@@ -2672,7 +2672,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>0.0</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="gravity_y_direction_field">
@@ -2685,7 +2685,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>0.0</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="gravity_z_direction_field">
@@ -2698,7 +2698,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>0.001</string>
+            <string>-1.0</string>
            </property>
           </widget>
           <widget class="QGroupBox" name="groupBox_3">
@@ -2723,7 +2723,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vx_a1_field">
@@ -2736,7 +2736,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vx_w_field">
@@ -2749,7 +2749,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vx_p_field">
@@ -2762,7 +2762,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLabel" name="label_9">
@@ -2827,7 +2827,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vy_w_field">
@@ -2840,7 +2840,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vy_a0_field">
@@ -2853,7 +2853,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vy_p_field">
@@ -2866,7 +2866,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vz_w_field">
@@ -2879,7 +2879,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vz_a1_field">
@@ -2892,7 +2892,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vz_a0_field">
@@ -2905,7 +2905,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
            <widget class="QLineEdit" name="gravity_vz_p_field">
@@ -2918,7 +2918,7 @@
              </rect>
             </property>
             <property name="text">
-             <string>0.001</string>
+             <string>0.0</string>
             </property>
            </widget>
           </widget>
@@ -3112,7 +3112,7 @@
      <x>0</x>
      <y>0</y>
      <width>1213</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

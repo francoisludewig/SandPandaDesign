@@ -245,6 +245,18 @@ void Lattice::draw(int color) {
     }
 }
 
+double Lattice::massMin() {
+    Granule *g;
+    double mass = 1000000;
+    for(int i = 0 ; i < N ; i++){
+        g = &gr[i];
+        if(g->m < mass)
+            mass = g->m;
+    }
+    return mass;
+}
+
+
 double Lattice::ComputeScale(){
     double zoom;
     double x,y,z;

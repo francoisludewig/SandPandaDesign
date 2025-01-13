@@ -21,3 +21,7 @@ void SetupTimePresenter::SetTimestep(double value) {
 void SetupTimePresenter::SetCaptureDelay(double value) {
     setup->captureTimeStep = value;
 }
+
+double SetupTimePresenter::ComputeTimestep() {
+    return setup->computeTimestep();
+}

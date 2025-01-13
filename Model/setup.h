@@ -1,10 +1,13 @@
 #ifndef SETUP_H
 #define SETUP_H
 
+#include<memory>
+#include "lattice.h"
+
 class Setup
 {
 public:
-    Setup();
+    Setup(std::vector< std::shared_ptr<Lattice> > *lattices);
 
     double resitutionCoefficient = 0.9;
     double normalStiffness = 100000;
@@ -33,6 +36,11 @@ public:
     double timeStep = 0.00001;
     double captureTimeStep = 1./1000.;
     double startingTime = 0.0;
+
+    double computeTimestep();
+
+private:
+    std::vector< std::shared_ptr<Lattice> > *lattices;
 };
 
 #endif // SETUP_H

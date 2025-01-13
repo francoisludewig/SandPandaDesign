@@ -22,6 +22,8 @@ public:
     void Velocity();
     double ComputeScale();
     void draw(int color);
+    double massMin();
+
 
     int N;
     double r0,r1,rho,rmax;
