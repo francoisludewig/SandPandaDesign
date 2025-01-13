@@ -21,6 +21,7 @@ signals:
     void data_updated();
     void new_cuboid(std::shared_ptr<Cuboid>);
     void remove_cuboid(int index);
+    void cuboids_updated(std::vector<CuboidPresenter> &cuboidPresenters);
 
 private:
     std::vector<CuboidPresenter> cuboidPresenters{};

@@ -13,7 +13,10 @@ SOURCES += \
     Model/cuboid.cpp \
     Model/disk.cpp \
     Model/elbow.cpp \
+    Model/granule.cpp \
+    Model/lattice.cpp \
     Model/plan.cpp \
+    Model/setup.cpp \
     Model/solid.cpp \
     Model/sphere.cpp \
     Model/stripeonsphere.cpp \
@@ -22,19 +25,29 @@ SOURCES += \
     Presenter/cuboidpresenter.cpp \
     Presenter/diskpresenter.cpp \
     Presenter/elbowpresenter.cpp \
+    Presenter/latticepresenter.cpp \
     Presenter/messagepresenter.cpp \
     Presenter/planpresenter.cpp \
+    Presenter/setupcontactmodelpresenter.cpp \
+    Presenter/setupgraviptypresenter.cpp \
+    Presenter/setuptimepresenter.cpp \
     Presenter/velocitiespresenter.cpp \
     Presenter/velocitypresenter.cpp \
     Repository/containerrepository.cpp \
     Repository/sphererepository.cpp \
     Widgets/animationwidget.cpp \
+    Widgets/conescombobox.cpp \
     Widgets/conetablewidget.cpp \
+    Widgets/cuboidscombobox.cpp \
     Widgets/cuboidtablewidget.cpp \
     Widgets/disktablewidget.cpp \
     Widgets/elbowtablewidget.cpp \
+    Widgets/latticetablewidget.cpp \
     Widgets/myglwidget.cpp \
     Widgets/plantablewidget.cpp \
+    Widgets/setupcontactmodelwidget.cpp \
+    Widgets/setupgravitywidget.cpp \
+    Widgets/setuptimewidget.cpp \
     Widgets/velocitiestabwidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -44,7 +57,10 @@ HEADERS += \
     Model/cuboid.h \
     Model/disk.h \
     Model/elbow.h \
+    Model/granule.h \
+    Model/lattice.h \
     Model/plan.h \
+    Model/setup.h \
     Model/solid.h \
     Model/sphere.h \
     Model/stripeonsphere.h \
@@ -53,19 +69,29 @@ HEADERS += \
     Presenter/cuboidpresenter.h \
     Presenter/diskpresenter.h \
     Presenter/elbowpresenter.h \
+    Presenter/latticepresenter.h \
     Presenter/messagepresenter.h \
     Presenter/planpresenter.h \
+    Presenter/setupcontactmodelpresenter.h \
+    Presenter/setupgraviptypresenter.h \
+    Presenter/setuptimepresenter.h \
     Presenter/velocitiespresenter.h \
     Presenter/velocitypresenter.h \
     Repository/containerrepository.h \
     Repository/sphererepository.h \
     Widgets/animationwidget.h \
+    Widgets/conescombobox.h \
     Widgets/conetablewidget.h \
+    Widgets/cuboidscombobox.h \
     Widgets/cuboidtablewidget.h \
     Widgets/disktablewidget.h \
     Widgets/elbowtablewidget.h \
+    Widgets/latticetablewidget.h \
     Widgets/myglwidget.h \
     Widgets/plantablewidget.h \
+    Widgets/setupcontactmodelwidget.h \
+    Widgets/setupgravitywidget.h \
+    Widgets/setuptimewidget.h \
     Widgets/velocitiestablewidget.h \
     Widgets/velocitiestabwidget.h \
     mainwindow.h \

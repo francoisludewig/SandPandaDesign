@@ -32,9 +32,9 @@ void ConeTableWidget::on_add_cone()
     connect(conePresenter.getInOutCheckBox(), &QCheckBox::stateChanged, this, &ConeTableWidget::on_new_checkbox_value);
     connect(conePresenter.getTopCheckBox(), &QCheckBox::stateChanged, this, &ConeTableWidget::on_new_checkbox_value);
     connect(conePresenter.getBottomCheckBox(), &QCheckBox::stateChanged, this, &ConeTableWidget::on_new_checkbox_value);
-
     printf("New Cone !\n");
     emit new_cone(cone);
+    emit cones_updated(this->conePresenters);
     emit data_updated();
 }
 
@@ -47,6 +47,7 @@ void ConeTableWidget::on_remove_cone()
         this->conePresenters.erase(conePrToRemove);
         this->removeRow(row);
         emit remove_cone(row);
+        emit cones_updated(this->conePresenters);
         emit data_updated();
     }
 }

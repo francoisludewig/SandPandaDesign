@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "Widgets/setuptimewidget.h"
+#include "Widgets/setupcontactmodelwidget.h"
+#include "Widgets/setupgravitywidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,5 +30,12 @@ private:
     void InitConeTab(MyGLWidget* myGLWidget);
     void InitElbowTab(MyGLWidget* myGLWidget);
     void InitCuboidTab(MyGLWidget* myGLWidget);
+    void InitLatticeTab(MyGLWidget* myGLWidget);
+    void InitSetupTimeWidget(SetupTimeWidget* setupTimeWidget );
+    void InitSetupContactModelWidget(SetupContactModelWidget* setupContactModelWidget );
+    void InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget);
+public slots:
+
+
 };
 #endif // MAINWINDOW_H

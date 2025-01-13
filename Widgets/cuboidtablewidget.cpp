@@ -33,6 +33,7 @@ void CuboidTableWidget::on_add_cuboid()
 
     printf("New Box !\n");
     emit new_cuboid(cuboid);
+    emit cuboids_updated(this->cuboidPresenters);
     emit data_updated();
 }
 
@@ -45,6 +46,7 @@ void CuboidTableWidget::on_remove_cuboid()
         this->cuboidPresenters.erase(cuboidPrToRemove);
         this->removeRow(row);
         emit remove_cuboid(row);
+        emit cuboids_updated(this->cuboidPresenters);
         emit data_updated();
     }
 }

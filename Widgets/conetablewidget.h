@@ -20,6 +20,7 @@ signals:
     void data_updated();
     void new_cone(std::shared_ptr<Cone>);
     void remove_cone(int index);
+    void cones_updated(std::vector<ConePresenter> &conePresenters);
 
 private:
     std::vector<ConePresenter> conePresenters{};

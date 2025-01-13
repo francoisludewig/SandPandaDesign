@@ -34,11 +34,17 @@ MessagePresenter::~MessagePresenter()
 void MessagePresenter::runDisplay()
 {
     while(running){
-        while(messages.empty()) {std::this_thread::sleep_for(1000ms);}
+        while(messages.empty() && running) {std::this_thread::sleep_for(1000ms);}
+        if(!running) {
+            return;
+        }
         auto msg = messages.front();
         messages.pop();
         messageLabel->setText(QString::fromStdString(msg));
-        std::this_thread::sleep_for(5000ms);
+        std::this_thread::sleep_for(2500ms);
+        if(!running) {
+            return;
+        }
         messageLabel->setText(QString::fromStdString(" "));
     }
 }

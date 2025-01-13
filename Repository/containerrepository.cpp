@@ -1,6 +1,8 @@
 #include "containerrepository.h"
 
-ContainerRepository::ContainerRepository() {}
+ContainerRepository::ContainerRepository() {
+    setup = std::make_shared<Setup>();
+}
 
 ContainerRepository& ContainerRepository::getInstance()
 {
@@ -20,6 +22,8 @@ void ContainerRepository::Draw(bool isLineContainer)
         elbow->Draw(isLineContainer);
     for(auto& cuboid : cuboids)
         cuboid->Draw(isLineContainer);
+    for(auto& lattice : lattices)
+        lattice->draw(0);
 
 }
 
@@ -161,6 +165,13 @@ std::shared_ptr<Cuboid> ContainerRepository::AddCuboid()
 }
 
 
+std::shared_ptr<Lattice> ContainerRepository::AddLattice() {
+    Lattice lattice{};
+    auto lattice_ptr = std::make_shared<Lattice>(lattice);
+    lattices.push_back(lattice_ptr);
+    return lattice_ptr;
+}
+
 void ContainerRepository::RemovePlan(std::shared_ptr<Plan> plan)
 {
     auto it = std::find(plans.begin(), plans.end(),
@@ -217,6 +228,50 @@ void ContainerRepository::RemoveCuboid(std::shared_ptr<Cuboid> cuboid) {
 }
 
 
+void ContainerRepository::RemoveLattice(std::shared_ptr<Lattice> lattice) {
+    auto it = std::find(lattices.begin(), lattices.end(),
+                        lattice);
+
+    // If element is found found, erase it
+    if (it != lattices.end()) {
+        lattices.erase(it);
+    }
+}
+
+
+std::shared_ptr<Cone> ContainerRepository::GetCone(int index) {
+    if(index >= 0 && index < cones.size()) {
+        return cones[index];
+    }
+    return nullptr;
+}
+
+std::shared_ptr<Cuboid> ContainerRepository::GetCuboid(int index) {
+    if(index >= 0 && index < cuboids.size()) {
+        return cuboids[index];
+    }
+    return nullptr;
+}
+
+std::shared_ptr<Setup> ContainerRepository::GetSetup() {
+    return setup;
+}
+
+int ContainerRepository::GetIndexOfCone(std::shared_ptr<Cone> cone) {
+    for(int i = 0 ; i < cones.size() ; ++i)
+        if (cones[i] == cone)
+            return i;
+    return -1;
+}
+
+int ContainerRepository::GetIndexOfCuboid(std::shared_ptr<Cuboid> cuboid) {
+    for(int i = 0 ; i < cuboids.size() ; ++i)
+        if (cuboids[i] == cuboid)
+            return i;
+    return -1;
+}
+
+
 double ContainerRepository::ComputeZoom() {
     double zoom0 = 1000000;
     double scale;
@@ -237,6 +292,12 @@ double ContainerRepository::ComputeZoom() {
     }
     for(auto& elbow : elbows) {
         scale = elbow->ComputeScale();
+        if(zoom0 > 1./scale)
+            zoom0 = 1./scale;
+    }
+
+    for(auto& lattice : lattices) {
+        scale = lattice->ComputeScale();
         if(zoom0 > 1./scale)
             zoom0 = 1./scale;
     }

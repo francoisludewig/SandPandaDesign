@@ -10,6 +10,8 @@
 #include "Model/cone.h"
 #include "Model/elbow.h"
 #include "Model/cuboid.h"
+#include "Model/lattice.h"
+#include "Model/setup.h"
 
 class ContainerRepository
 {
@@ -25,12 +27,23 @@ public:
     std::shared_ptr<Cone> AddCone();
     std::shared_ptr<Elbow> AddElbow();
     std::shared_ptr<Cuboid> AddCuboid();
+    std::shared_ptr<Lattice> AddLattice();
 
     void RemovePlan(std::shared_ptr<Plan> plan);
     void RemoveDisk(std::shared_ptr<Disk> disk);
     void RemoveCone(std::shared_ptr<Cone> cone);
     void RemoveElbow(std::shared_ptr<Elbow> elbow);
     void RemoveCuboid(std::shared_ptr<Cuboid> cuboid);
+    void RemoveLattice(std::shared_ptr<Lattice> lattice);
+
+
+    std::shared_ptr<Cone> GetCone(int index);
+    std::shared_ptr<Cuboid> GetCuboid(int index);
+    std::shared_ptr<Setup> GetSetup();
+    int GetIndexOfCone(std::shared_ptr<Cone> cone);
+    int GetIndexOfCuboid(std::shared_ptr<Cuboid> cuboid);
+
+
     double ComputeZoom();
 private:
     ContainerRepository(); // Prevent construction
@@ -43,6 +56,8 @@ private:
     std::vector< std::shared_ptr<Cone> > cones {};
     std::vector< std::shared_ptr<Elbow> > elbows {};
     std::vector< std::shared_ptr<Cuboid> > cuboids {};
+    std::vector< std::shared_ptr<Lattice> > lattices {};
+    std::shared_ptr<Setup> setup;
 };
 
 #endif // CONTAINERREPOSITORY_H
