@@ -17,6 +17,10 @@ public:
     void moveat(double t, double h);
     void startAnime();
     void stopAnime();
+    void Export(FILE *ft);
+
+    bool NonNullVelocity();
+    void Zone(double time);
 
     double xi,yi,zi;
     double xf,yf,zf;
@@ -37,6 +41,7 @@ public:
     Velocity vx,vy,vz;
     Velocity wx,wy,wz;
     double Vx,Vy,Vz,Wx,Wy,Wz;
+    double xmax, ymax, zmax, xmin, ymin, zmin;
 };
 
 #endif // ELBOW_H

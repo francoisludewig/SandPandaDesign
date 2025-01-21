@@ -5,6 +5,7 @@
 #include "Widgets/setuptimewidget.h"
 #include "Widgets/setupcontactmodelwidget.h"
 #include "Widgets/setupgravitywidget.h"
+#include "Widgets/saveloadexportwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +35,7 @@ private:
     void InitSetupTimeWidget(SetupTimeWidget* setupTimeWidget );
     void InitSetupContactModelWidget(SetupContactModelWidget* setupContactModelWidget );
     void InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget);
+    void InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget);
 public slots:
 
 

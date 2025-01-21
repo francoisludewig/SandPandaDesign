@@ -11,9 +11,14 @@ public:
     void ReadFromFile(FILE *ft);
     void Draw(bool isLineContainer);
     double ComputeScale() const;
+    void Export(FILE *ft);
 
+
+    void Zone(double time);
     double r;
     int inAndOut;
+    double xmax, ymax, zmax, xmin, ymin, zmin;
+
 private:
     int periodic;
 };

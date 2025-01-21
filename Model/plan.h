@@ -17,8 +17,15 @@ public:
     void Draw(bool isLineContainer) const;
     double ComputeScale() const;
 
+    void Zone(double time);
+    void computeQuaternion();
+    void Export(FILE *ft);
+    void ExportWithoutBaseComputing(FILE *ft);
+
     double dt,ds;
     int inAndOut;
+    double xmax, ymax, zmax, xmin, ymin, zmin;
+    double q0, q1, q2, q3;
 private:
     int ped;
 };

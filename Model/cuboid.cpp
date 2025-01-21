@@ -17,6 +17,13 @@ Cuboid::Cuboid():Solid() {
     p3 = std::make_shared<Plan>(plan3);
     Plan plan4;
     p4 = std::make_shared<Plan>(plan4);
+
+    nx = 0;
+    ny = 0;
+    nz = 1;
+    this->base();
+    this->updatePlans();
+
 }
 
 void Cuboid::Draw(bool isLineContainer) {
@@ -95,9 +102,9 @@ void Cuboid::updatePlans() {
     p1->tx = tx;
     p1->ty = ty;
     p1->tz = tz;
-    p1->sx = nx;
-    p1->sy = ny;
-    p1->sz = nz;
+    p1->sx = -nx;
+    p1->sy = -ny;
+    p1->sz = -nz;
     p1->dt = la;
     p1->ds = h;
     p1->x = (x-sx*Lo/2.);
@@ -140,9 +147,9 @@ void Cuboid::updatePlans() {
     p4->tx = sx;
     p4->ty = sy;
     p4->tz = sz;
-    p4->sx = nx;
-    p4->sy = ny;
-    p4->sz = nz;
+    p4->sx = -nx;
+    p4->sy = -ny;
+    p4->sz = -nz;
     p4->dt = Lo;
     p4->ds = h;
     p4->x = (x+tx*la/2.);
@@ -156,9 +163,9 @@ void Cuboid::updatePlans() {
         bottom->tx = sx;
         bottom->ty = sy;
         bottom->tz = sz;
-        bottom->sx = tx;
-        bottom->sy = ty;
-        bottom->sz = tz;
+        bottom->sx = -tx;
+        bottom->sy = -ty;
+        bottom->sz = -tz;
         bottom->dt = Lo;
         bottom->ds = la;
         bottom->x = x-nx*h/2.;
@@ -169,9 +176,9 @@ void Cuboid::updatePlans() {
         top->nx = -nx;
         top->ny = -ny;
         top->nz = -nz;
-        top->tx = -sx;
-        top->ty = -sy;
-        top->tz = -sz;
+        top->tx = sx;
+        top->ty = sy;
+        top->tz = sz;
         top->sx = tx;
         top->sy = ty;
         top->sz = tz;
@@ -181,4 +188,69 @@ void Cuboid::updatePlans() {
         top->y = y+ny*h/2.;
         top->z = z+nz*h/2.;
     }
+}
+
+void Cuboid::Zone(double time) {
+    double xe,ye,ze;
+    p1->Zone(time);
+    p2->Zone(time);
+    xmax = -10000;
+    ymax = -10000;
+    zmax = -10000;
+    xmin = 10000;
+    ymin = 10000;
+    zmin = 10000;
+    xe = p1->xmin;
+    ye = p1->ymin;
+    ze = p1->zmin;
+    if(xmax < xe)xmax = xe;
+    if(ymax < ye)ymax = ye;
+    if(zmax < ze)zmax = ze;
+    if(xmin > xe)xmin = xe;
+    if(ymin > ye)ymin = ye;
+    if(zmin > ze)zmin = ze;
+    xe = p1->xmax;
+    ye = p1->ymax;
+    ze = p1->zmax;
+    if(xmax < xe)xmax = xe;
+    if(ymax < ye)ymax = ye;
+    if(zmax < ze)zmax = ze;
+    if(xmin > xe)xmin = xe;
+    if(ymin > ye)ymin = ye;
+    if(zmin > ze)zmin = ze;
+
+    xe = p2->xmin;
+    ye = p2->ymin;
+    ze = p2->zmin;
+    if(xmax < xe)xmax = xe;
+    if(ymax < ye)ymax = ye;
+    if(zmax < ze)zmax = ze;
+    if(xmin > xe)xmin = xe;
+    if(ymin > ye)ymin = ye;
+    if(zmin > ze)zmin = ze;
+    xe = p2->xmax;
+    ye = p2->ymax;
+    ze = p2->zmax;
+    if(xmax < xe)xmax = xe;
+    if(ymax < ye)ymax = ye;
+    if(zmax < ze)zmax = ze;
+    if(xmin > xe)xmin = xe;
+    if(ymin > ye)ymin = ye;
+    if(zmin > ze)zmin = ze;
+}
+
+
+void Cuboid::Export(FILE *ft, int npl) {
+    this->base();
+    this->updatePlans();
+
+    //TODO add associated periodic plans by number ;-)
+
+    p1->ExportWithoutBaseComputing(ft);
+    p2->ExportWithoutBaseComputing(ft);
+    p3->ExportWithoutBaseComputing(ft);
+    p4->ExportWithoutBaseComputing(ft);
+
+    if(top != nullptr) top->ExportWithoutBaseComputing(ft);
+    if(bottom != nullptr) bottom->ExportWithoutBaseComputing(ft);
 }

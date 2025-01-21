@@ -24,6 +24,8 @@ public:
     void draw(int color);
     double massMin();
 
+    double RmaxSphScale();
+    void Export(FILE *ft, int sp);
 
     int N;
     double r0,r1,rho,rmax;

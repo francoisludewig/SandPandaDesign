@@ -15,6 +15,7 @@ SOURCES += \
     Model/elbow.cpp \
     Model/granule.cpp \
     Model/lattice.cpp \
+    Model/linkedcells.cpp \
     Model/plan.cpp \
     Model/setup.cpp \
     Model/solid.cpp \
@@ -45,6 +46,7 @@ SOURCES += \
     Widgets/latticetablewidget.cpp \
     Widgets/myglwidget.cpp \
     Widgets/plantablewidget.cpp \
+    Widgets/saveloadexportwidget.cpp \
     Widgets/setupcontactmodelwidget.cpp \
     Widgets/setupgravitywidget.cpp \
     Widgets/setuptimewidget.cpp \
@@ -59,6 +61,7 @@ HEADERS += \
     Model/elbow.h \
     Model/granule.h \
     Model/lattice.h \
+    Model/linkedcells.h \
     Model/plan.h \
     Model/setup.h \
     Model/solid.h \
@@ -89,6 +92,7 @@ HEADERS += \
     Widgets/latticetablewidget.h \
     Widgets/myglwidget.h \
     Widgets/plantablewidget.h \
+    Widgets/saveloadexportwidget.h \
     Widgets/setupcontactmodelwidget.h \
     Widgets/setupgravitywidget.h \
     Widgets/setuptimewidget.h \

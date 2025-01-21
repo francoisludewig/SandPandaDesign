@@ -3,11 +3,12 @@
 
 #include<memory>
 #include "lattice.h"
+#include "linkedcells.h"
 
 class Setup
 {
 public:
-    Setup(std::vector< std::shared_ptr<Lattice> > *lattices);
+    Setup(std::vector< std::shared_ptr<Lattice> > *lattices, std::shared_ptr<LinkedCells> linkedCells);
 
     double resitutionCoefficient = 0.9;
     double normalStiffness = 100000;
@@ -37,10 +38,14 @@ public:
     double captureTimeStep = 1./1000.;
     double startingTime = 0.0;
 
+    int Nsp = 0;
+
     double computeTimestep();
 
+    void Export(std::string &directory);
 private:
     std::vector< std::shared_ptr<Lattice> > *lattices;
+    std::shared_ptr<LinkedCells> linkedCells;
 };
 
 #endif // SETUP_H

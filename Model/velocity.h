@@ -8,6 +8,7 @@ class Velocity
 public:
     Velocity();
     void ReadFromFile(FILE *ft);
+    void Export(FILE *ft);
     double valueat(double t);
     double A0,A1,w,p;
 };

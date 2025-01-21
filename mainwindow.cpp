@@ -5,6 +5,7 @@
 #include "Presenter/messagepresenter.h"
 #include "Widgets/setuptimewidget.h"
 #include "Widgets/setupgravitywidget.h"
+#include "Widgets/saveloadexportwidget.h"
 
 void MainWindow::InitPlanTab(MyGLWidget* myGLWidget)
 {
@@ -152,10 +153,11 @@ void MainWindow::InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget) 
     connect(ui->gravity_vz_a1_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vz_A1);
     connect(ui->gravity_vz_w_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vz_w);
     connect(ui->gravity_vz_p_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vz_p);
-
-
 }
 
+void MainWindow::InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget) {
+    connect(ui->exportButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_export);
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -167,6 +169,8 @@ MainWindow::MainWindow(QWidget *parent)
     SetupTimeWidget* setupTimeWidget = new SetupTimeWidget(nullptr);
     SetupContactModelWidget* setupContactModelWidget = new SetupContactModelWidget(nullptr);
     SetupGravityWidget* setupGravityWidget = new SetupGravityWidget(nullptr);
+    SaveLoadExportWidget* saveloadexportwidget = new SaveLoadExportWidget(nullptr);
+
     animator->init();
     myGLWidget->setAnimator(animator);
 
@@ -179,6 +183,7 @@ MainWindow::MainWindow(QWidget *parent)
     InitSetupTimeWidget(setupTimeWidget);
     InitSetupContactModelWidget(setupContactModelWidget);
     InitSetupGravityWidget(setupGravityWidget);
+    InitSaveLoadExportWidget(saveloadexportwidget);
 
     connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     connect(ui->containerComboBox, &QComboBox::currentIndexChanged, myGLWidget, &MyGLWidget::on_new_container_visual_parameter);

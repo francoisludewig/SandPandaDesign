@@ -1,7 +1,8 @@
 #include "containerrepository.h"
 
 ContainerRepository::ContainerRepository() {
-    setup = std::make_shared<Setup>(&lattices);
+    linkedCells = std::make_shared<LinkedCells>();
+    setup = std::make_shared<Setup>(&lattices, linkedCells);
 }
 
 ContainerRepository& ContainerRepository::getInstance()
@@ -9,6 +10,93 @@ ContainerRepository& ContainerRepository::getInstance()
     static ContainerRepository instance{};
     return instance;
 }
+
+void ContainerRepository::Export(std::string directory) {
+    std::cout << "Export !" << std::endl;
+    // Compute LinkedCell
+    linkedCells->Compute(plans, disks, cones, elbows, cuboids, lattices, setup->duration);
+    setup->Export(directory);
+    this->exportGrain(directory);
+    this->exportContainer(directory);
+}
+
+void ContainerRepository::exportContainer(std::string& directory) {
+    char filename[1024];
+    // Exportation du fichier container.txt
+    sprintf(filename,"%s/container.txt",directory.c_str());
+    printf("%s\n",filename);
+    FILE *ft = fopen(filename,"w");
+    int Npl = plans.size();
+
+    for(auto cuboid : cuboids) {
+        Npl += cuboid->planCount();
+    }
+
+    int Ndisk = disks.size();
+
+    for(auto cone : cones) {
+        Ndisk += cone->diskCount();
+    }
+
+
+    int Ncone = cones.size();
+    int Nelbow = elbows.size();
+    fprintf(ft,"%d\n",Npl);
+    fprintf(ft,"%d\n",Ndisk);
+    fprintf(ft,"%d\n",Ncone);
+    fprintf(ft,"%d\n",Nelbow);
+
+    for(auto plan : plans) {
+        plan->Export(ft);
+    }
+
+    int npl = plans.size();
+
+    for(auto cuboid : cuboids) {
+        cuboid->Export(ft, npl);
+        npl += cuboid->planCount();
+    }
+
+    for(auto disk : disks) {
+        disk->Export(ft);
+    }
+    for(auto cone : cones) {
+        cone->ExportLimits(ft);
+    }
+    for(auto cone : cones) {
+        cone->Export(ft);
+    }
+    for(auto elbow : elbows) {
+        elbow->Export(ft);
+    }
+    fflush(ft);
+    fclose(ft);
+}
+
+void ContainerRepository::exportGrain(std::string &directory) {
+    char filename[1024];
+    // Exportation du fichier container.txt
+    sprintf(filename,"%s/grain.txt",directory.c_str());
+    printf("%s\n",filename);
+    FILE *ft = fopen(filename,"w");
+
+    setup->Nsp = 0;
+    int Ngrain = 0;
+    for(auto& lattice : lattices) {
+        Ngrain += lattice->N;
+    }
+    fprintf(ft,"%d\n",Ngrain);
+
+
+    for(auto& lattice : lattices) {
+        lattice->Export(ft, setup->Nsp);
+        setup->Nsp++;
+    }
+
+    fflush(ft);
+    fclose(ft);
+}
+
 
 void ContainerRepository::Draw(bool isLineContainer)
 {

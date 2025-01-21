@@ -256,6 +256,20 @@ double Lattice::massMin() {
     return mass;
 }
 
+void Lattice::Export(FILE *ft, int sp) {
+    for(auto& granule : gr) {
+        granule.exportToFile(ft, sp);
+    }
+}
+
+double Lattice::RmaxSphScale() {
+    double R = 0;
+    for(auto& gra : gr){
+        if(R < gra.r)  R = gra.r;
+    }
+    return R;
+}
+
 
 double Lattice::ComputeScale(){
     double zoom;

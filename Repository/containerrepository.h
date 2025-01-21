@@ -4,7 +4,7 @@
 #include <string>
 #include<vector>
 #include<memory>
-
+#define _CRT_SECURE_NO_DEPRECATE
 #include "Model/plan.h"
 #include "Model/disk.h"
 #include "Model/cone.h"
@@ -12,6 +12,7 @@
 #include "Model/cuboid.h"
 #include "Model/lattice.h"
 #include "Model/setup.h"
+#include "Model/linkedcells.h"
 
 class ContainerRepository
 {
@@ -43,6 +44,7 @@ public:
     int GetIndexOfCone(std::shared_ptr<Cone> cone);
     int GetIndexOfCuboid(std::shared_ptr<Cuboid> cuboid);
 
+    void Export(std::string directory);
 
     double ComputeZoom();
 private:
@@ -51,6 +53,9 @@ private:
     ContainerRepository& operator=(const ContainerRepository&) = default; // Prevent assignment
     ~ContainerRepository() = default; // Prevent unwanted destruction
 
+    void exportContainer(std::string &directory);
+    void exportGrain(std::string &directory);
+
     std::vector< std::shared_ptr<Plan> > plans {};
     std::vector< std::shared_ptr<Disk> > disks {};
     std::vector< std::shared_ptr<Cone> > cones {};
@@ -58,6 +63,7 @@ private:
     std::vector< std::shared_ptr<Cuboid> > cuboids {};
     std::vector< std::shared_ptr<Lattice> > lattices {};
     std::shared_ptr<Setup> setup;
+    std::shared_ptr<LinkedCells> linkedCells;
 };
 
 #endif // CONTAINERREPOSITORY_H

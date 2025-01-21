@@ -17,6 +17,9 @@ public:
     void moveat(double t, double h);
     void startAnime();
     void stopAnime();
+
+    bool NonNullVelocity();
+
     virtual void ReadFromFile(FILE *ft);
 
     double x = 0,y = 0,z = 0;

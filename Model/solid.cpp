@@ -207,3 +207,22 @@ void Solid::stopAnime(){
     nz = nz0;
     base();
 }
+
+
+bool Solid::NonNullVelocity(){
+    if(vx.A0 != 0 || vx.A1 != 0)
+        return true;
+    if(vy.A0 != 0 || vy.A1 != 0)
+        return true;
+    if(vz.A0 != 0 || vz.A1 != 0)
+        return true;
+
+    if(wx.A0 != 0 || wx.A1 != 0)
+        return true;
+    if(wy.A0 != 0 || wy.A1 != 0)
+        return true;
+    if(wz.A0 != 0 || wz.A1 != 0)
+        return true;
+
+    return false;
+}

@@ -19,6 +19,12 @@ public:
     void updateVelocityPlans(std::shared_ptr<Plan> p);
     void updatePlans();
 
+    int planCount() { return 4 + (top != nullptr ? 1 : 0) + (bottom != nullptr ? 1 : 0);}
+    void Export(FILE *ft, int npl);
+
+
+    void Zone(double time);
+
     double la,Lo,h;
     std::shared_ptr<Plan> top, bottom;
     std::shared_ptr<Plan> p1, p2, p3, p4;

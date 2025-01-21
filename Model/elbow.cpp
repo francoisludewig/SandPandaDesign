@@ -345,3 +345,137 @@ void Elbow::base()
     sy = tx*nz-tz*nx;
     sz = nx*ty-ny*tx;
 }
+
+
+
+bool Elbow::NonNullVelocity(){
+    if(vx.A0 != 0 || vx.A1 != 0)
+        return true;
+    if(vy.A0 != 0 || vy.A1 != 0)
+        return true;
+    if(vz.A0 != 0 || vz.A1 != 0)
+        return true;
+
+    if(wx.A0 != 0 || wx.A1 != 0)
+        return true;
+    if(wy.A0 != 0 || wy.A1 != 0)
+        return true;
+    if(wz.A0 != 0 || wz.A1 != 0)
+        return true;
+
+    return false;
+}
+
+void Elbow::Zone(double time) {
+    double h,Nh,dalpha;
+    double xe,ye,ze;
+    xmax = -10000;
+    ymax = -10000;
+    zmax = -10000;
+    xmin = 10000;
+    ymin = 10000;
+    zmin = 10000;
+
+    h = 0.0001;
+    if(this->NonNullVelocity())
+        Nh = (int)(time/h);
+    else
+        Nh = 1;
+
+    this->startAnime();
+    for(int i = 0 ; i < Nh ; i++){
+        this->moveat(i*h, h);
+        dalpha = 0;
+        xe = Rc*cos(dalpha)*tx+Rc*sin(dalpha)*nx+xr;
+        ye = Rc*cos(dalpha)*ty+Rc*sin(dalpha)*ny+yr;
+        ze = Rc*cos(dalpha)*tz+Rc*sin(dalpha)*nz+zr;
+
+        xe += radius;
+        ye += radius;
+        ze += radius;
+        if(xmax < xe)xmax = xe;
+        if(ymax < ye)ymax = ye;
+        if(zmax < ze)zmax = ze;
+        if(xmin > xe)xmin = xe;
+        if(ymin > ye)ymin = ye;
+        if(zmin > ze)zmin = ze;
+        xe -= 2*radius;
+        ye -= 2*radius;
+        ze -= 2*radius;
+        if(xmax < xe)xmax = xe;
+        if(ymax < ye)ymax = ye;
+        if(zmax < ze)zmax = ze;
+        if(xmin > xe)xmin = xe;
+        if(ymin > ye)ymin = ye;
+        if(zmin > ze)zmin = ze;
+
+        dalpha = alpha/2;
+        xe = Rc*cos(dalpha)*tx+Rc*sin(dalpha)*nx+xr;
+        ye = Rc*cos(dalpha)*ty+Rc*sin(dalpha)*ny+yr;
+        ze = Rc*cos(dalpha)*tz+Rc*sin(dalpha)*nz+zr;
+
+        xe += radius;
+        ye += radius;
+        ze += radius;
+        if(xmax < xe)xmax = xe;
+        if(ymax < ye)ymax = ye;
+        if(zmax < ze)zmax = ze;
+        if(xmin > xe)xmin = xe;
+        if(ymin > ye)ymin = ye;
+        if(zmin > ze)zmin = ze;
+        xe -= 2*radius;
+        ye -= 2*radius;
+        ze -= 2*radius;
+        if(xmax < xe)xmax = xe;
+        if(ymax < ye)ymax = ye;
+        if(zmax < ze)zmax = ze;
+        if(xmin > xe)xmin = xe;
+        if(ymin > ye)ymin = ye;
+        if(zmin > ze)zmin = ze;
+
+        dalpha = alpha;
+        xe = Rc*cos(dalpha)*tx+Rc*sin(dalpha)*nx+xr;
+        ye = Rc*cos(dalpha)*ty+Rc*sin(dalpha)*ny+yr;
+        ze = Rc*cos(dalpha)*tz+Rc*sin(dalpha)*nz+zr;
+
+        xe += radius;
+        ye += radius;
+        ze += radius;
+        if(xmax < xe)xmax = xe;
+        if(ymax < ye)ymax = ye;
+        if(zmax < ze)zmax = ze;
+        if(xmin > xe)xmin = xe;
+        if(ymin > ye)ymin = ye;
+        if(zmin > ze)zmin = ze;
+        xe -= 2*radius;
+        ye -= 2*radius;
+        ze -= 2*radius;
+        if(xmax < xe)xmax = xe;
+        if(ymax < ye)ymax = ye;
+        if(zmax < ze)zmax = ze;
+        if(xmin > xe)xmin = xe;
+        if(ymin > ye)ymin = ye;
+        if(zmin > ze)zmin = ze;
+    }
+    this->stopAnime();
+}
+
+
+
+void Elbow::Export(FILE *ft) {
+    this->base();
+    fprintf(ft,"%lf\t%lf\t%lf\n",xi,yi,zi);
+    fprintf(ft,"%lf\t%lf\t%lf\n",xf,yf,zf);
+    fprintf(ft,"%lf\t%lf\t%lf\n",xr,yr,zr);
+    fprintf(ft,"%lf\t%lf\t%lf\n",nx,ny,nz);
+    fprintf(ft,"%lf\t%lf\t%lf\n",tx,ty,tz);
+    fprintf(ft,"%lf\t%lf\t%lf\n",sx,sy,sz);
+    vx.Export(ft);
+    vy.Export(ft);
+    vz.Export(ft);
+    wx.Export(ft);
+    wy.Export(ft);
+    wz.Export(ft);
+    fprintf(ft,"%lf\t%lf\t%lf\n",orx,ory,orz);
+    fprintf(ft,"%lf\t%lf\t%lf\n",Rc,alpha,radius);
+}

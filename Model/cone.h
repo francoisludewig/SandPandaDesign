@@ -17,11 +17,18 @@ public:
 
     void setTop(bool activate);
     void setBottom(bool activate);
+    int diskCount() {return (top != nullptr ? 1 :0) + (bottom != nullptr ? 1 : 0);}
 
+
+    void Zone(double time);
+
+    void ExportLimits(FILE *ft);
+    void Export(FILE *ft);
 
     double r0,r1,h,dr;
     int inAndOut;
     std::shared_ptr<Disk> top, bottom;
+    double xmax, ymax, zmax, xmin, ymin, zmin;
 
 private:
     void updateTop();

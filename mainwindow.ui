@@ -14,7 +14,7 @@
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SandPandaDesign</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="mainTab">
@@ -2313,9 +2313,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-521</y>
          <width>565</width>
-         <height>703</height>
+         <height>910</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -2933,6 +2933,32 @@
            </property>
            <property name="text">
             <string>Direction</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="saveSetupGroupBox">
+          <property name="minimumSize">
+           <size>
+            <width>231</width>
+            <height>201</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Save - Load - Export</string>
+          </property>
+          <widget class="QPushButton" name="exportButton">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>30</y>
+             <width>171</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Export</string>
            </property>
           </widget>
          </widget>

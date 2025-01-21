@@ -31,5 +31,5 @@ void Granule::exportToFile(FILE *ft, int sp){
     fprintf(ft,"%e\t%e\t%e\t%e\n",0.0,0.0,0.0,0.0);
     fprintf(ft,"%e\t%e\t%e\n",vx,vy,vz);
     fprintf(ft,"%e\t%e\t%e\n",wx,wy,wz);
-    fprintf(ft,"%e\t%e\t%e\t%d\t%d\t%d\t%d\t%d\n",r,m,I,sp,-9,-9,-9,-9);
+    fprintf(ft,"%e\t%e\t%e\t%d\t%d\n",r,m,I,sp,-9);
 }

@@ -159,3 +159,76 @@ void Cone::updateBottom()
         bottom->inAndOut = inAndOut;
     }
 }
+
+
+void Cone::Zone(double time) {
+    double h,Nh;
+    double xe,ye,ze;
+    xmax = -10000;
+    ymax = -10000;
+    zmax = -10000;
+    xmin = 10000;
+    ymin = 10000;
+    zmin = 10000;
+
+    h = 0.0001;
+    if(this->NonNullVelocity())
+        Nh = (int)(time/h);
+    else
+        Nh = 1;
+
+    this->startAnime();
+    for(int i = 0 ; i < Nh ; i++){
+        this->moveat(i*h, h);
+        for(int j = 0 ; j < 20 ; j++){
+            xe = x-h/2*nx + r0*cos(0.3141592*j)*tx + r0*sin(0.3141592*j)*sx;
+            ye = y-h/2*ny + r0*cos(0.3141592*j)*ty + r0*sin(0.3141592*j)*sy;
+            ze = z-h/2*nz + r0*cos(0.3141592*j)*tz + r0*sin(0.3141592*j)*sz;
+            if(xmax < xe)xmax = xe;
+            if(ymax < ye)ymax = ye;
+            if(zmax < ze)zmax = ze;
+            if(xmin > xe)xmin = xe;
+            if(ymin > ye)ymin = ye;
+            if(zmin > ze)zmin = ze;
+        }
+
+        for(int j = 0 ; j < 20 ; j++){
+            xe = x+h/2*nx + r1*cos(0.3141592*j)*tx + r1*sin(0.3141592*j)*sx;
+            ye = y+h/2*ny + r1*cos(0.3141592*j)*ty + r1*sin(0.3141592*j)*sy;
+            ze = z+h/2*nz + r1*cos(0.3141592*j)*tz + r1*sin(0.3141592*j)*sz;
+            if(xmax < xe)xmax = xe;
+            if(ymax < ye)ymax = ye;
+            if(zmax < ze)zmax = ze;
+            if(xmin > xe)xmin = xe;
+            if(ymin > ye)ymin = ye;
+            if(zmin > ze)zmin = ze;
+
+        }
+    }
+    this->stopAnime();
+}
+
+void Cone::ExportLimits(FILE *ft) {
+    if(top != nullptr) top->Export(ft);
+    if(bottom != nullptr) bottom->Export(ft);
+}
+
+void Cone::Export(FILE *ft) {
+    this->base();
+    this->updateBottom();
+    this->updateTop();
+    fprintf(ft,"%lf\t%lf\t%lf\n",x,y,z);
+    fprintf(ft,"%lf\t%lf\t%lf\n",nx,ny,nz);
+    fprintf(ft,"%lf\t%lf\t%lf\n",tx,ty,tz);
+    fprintf(ft,"%lf\t%lf\t%lf\n",sx,sy,sz);
+    vx.Export(ft);
+    vy.Export(ft);
+    vz.Export(ft);
+    wx.Export(ft);
+    wy.Export(ft);
+    wz.Export(ft);
+    fprintf(ft,"%lf\t%lf\t%lf\n",orx,ory,orz);
+    fprintf(ft,"%d\n",0);
+    fprintf(ft,"%lf\t%lf\t%lf\t%lf\n",h,r0,r1,fabs(r1-r0));
+    fprintf(ft,"%d\t-9\n",inAndOut);
+}
