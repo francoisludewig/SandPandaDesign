@@ -17,6 +17,7 @@ public:
     void moveat(double t, double h);
     void startAnime();
     void stopAnime();
+    void computeQuaternion();
 
     bool NonNullVelocity();
 
@@ -37,6 +38,7 @@ public:
     double nx0 = 1,ny0 = 0,nz0 = 0;
     int Ngb;
     int N,Nold;
+    double q0, q1, q2, q3;
 
     bool isAnimated = false;
 };

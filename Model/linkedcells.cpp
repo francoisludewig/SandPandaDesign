@@ -27,14 +27,14 @@ void LinkedCells::computeZoneForPlan(std::vector< std::shared_ptr<Plan> >& plans
 }
 
 void LinkedCells::computeZoneForDisk(std::vector< std::shared_ptr<Disk> >& disks, double time) {
-    for(auto& diks : disks) {
-        diks->Zone(time);
-        if(xmin > diks->xmin)xmin = diks->xmin;
-        if(ymin > diks->ymin)ymin = diks->ymin;
-        if(zmin > diks->zmin)zmin = diks->zmin;
-        if(xmax < diks->xmax)xmax = diks->xmax;
-        if(ymax < diks->ymax)ymax = diks->ymax;
-        if(zmax < diks->zmax)zmax = diks->zmax;
+    for(auto& disk : disks) {
+        disk->Zone(time);
+        if(xmin > disk->xmin)xmin = disk->xmin;
+        if(ymin > disk->ymin)ymin = disk->ymin;
+        if(zmin > disk->zmin)zmin = disk->zmin;
+        if(xmax < disk->xmax)xmax = disk->xmax;
+        if(ymax < disk->ymax)ymax = disk->ymax;
+        if(zmax < disk->zmax)zmax = disk->zmax;
     }
 }
 

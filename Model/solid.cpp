@@ -31,6 +31,40 @@ void Solid::ReadFromFile(FILE *ft)
     sz = (1 - 2*q1*q1 - 2*q2*q2);
 }
 
+
+void Solid::computeQuaternion() {
+    //double q0,q1,q2,q3;
+    q1 = sqrt(-(ty+sz-nx-1)/4.);
+    if(-(ty+sz-nx-1) < 0)
+        q1 = 0.;
+
+    q2 = sqrt(-(-ty+sz+nx-1)/4.);
+    if(-(-ty+sz+nx-1) < 0)
+        q2 = 0.;
+
+    q3 = sqrt(-(ty-sz+nx-1)/4.);
+    if(-(ty-sz+nx-1) < 0)
+        q3 = 0.;
+
+    q0 = sqrt(1.-q1*q1-q2*q2-q3*q3);
+    if(q0 != q0)
+        q0 = 0.;
+    double maxq = q0;
+    if(q1 > maxq)maxq = q1;
+    if(q2 > maxq)maxq = q2;
+    if(q3 > maxq)maxq = q3;
+    maxq *= pow(10,-14);
+
+    if(fabs(q0) < maxq)q0 = 0.;
+    if(fabs(q1) < maxq)q1 = 0.;
+    if(fabs(q2) < maxq)q2 = 0.;
+    if(fabs(q3) < maxq)q3 = 0.;
+
+    if(tz-sy < 0) q1*=-1;
+    if(sx-nz < 0) q2*=-1;
+    if(ny-tx < 0) q3*=-1;
+}
+
 void Solid::base()
 {
     float norme = sqrt(nx*nx+ny*ny+nz*nz);

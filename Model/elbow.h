@@ -30,6 +30,7 @@ public:
     double sx,sy,sz;
     double cx,cy,cz,radius,Rc,alpha;
     double orx = 0, ory = 0, orz = 0;
+
     int N;
 
     double xi0 = 0,yi0 = 0,zi0 = 0;

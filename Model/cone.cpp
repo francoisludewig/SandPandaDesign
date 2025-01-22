@@ -162,7 +162,7 @@ void Cone::updateBottom()
 
 
 void Cone::Zone(double time) {
-    double h,Nh;
+    double dh,Nh;
     double xe,ye,ze;
     xmax = -10000;
     ymax = -10000;
@@ -171,15 +171,15 @@ void Cone::Zone(double time) {
     ymin = 10000;
     zmin = 10000;
 
-    h = 0.0001;
+    dh = 0.0001;
     if(this->NonNullVelocity())
-        Nh = (int)(time/h);
+        Nh = (int)(time/dh);
     else
         Nh = 1;
 
     this->startAnime();
     for(int i = 0 ; i < Nh ; i++){
-        this->moveat(i*h, h);
+        this->moveat(i*dh, dh);
         for(int j = 0 ; j < 20 ; j++){
             xe = x-h/2*nx + r0*cos(0.3141592*j)*tx + r0*sin(0.3141592*j)*sx;
             ye = y-h/2*ny + r0*cos(0.3141592*j)*ty + r0*sin(0.3141592*j)*sy;
@@ -218,9 +218,8 @@ void Cone::Export(FILE *ft) {
     this->updateBottom();
     this->updateTop();
     fprintf(ft,"%lf\t%lf\t%lf\n",x,y,z);
-    fprintf(ft,"%lf\t%lf\t%lf\n",nx,ny,nz);
-    fprintf(ft,"%lf\t%lf\t%lf\n",tx,ty,tz);
-    fprintf(ft,"%lf\t%lf\t%lf\n",sx,sy,sz);
+    computeQuaternion();
+    fprintf(ft,"%lf\t%lf\t%lf\t%lf\n",q0, q1, q2, q3);
     vx.Export(ft);
     vy.Export(ft);
     vz.Export(ft);
@@ -228,7 +227,10 @@ void Cone::Export(FILE *ft) {
     wy.Export(ft);
     wz.Export(ft);
     fprintf(ft,"%lf\t%lf\t%lf\n",orx,ory,orz);
-    fprintf(ft,"%d\n",0);
+    //fprintf(ft,"%d\n",0);
     fprintf(ft,"%lf\t%lf\t%lf\t%lf\n",h,r0,r1,fabs(r1-r0));
-    fprintf(ft,"%d\t-9\n",inAndOut);
+    fprintf(ft,"%d\t-9\t-9\n",inAndOut);
+    fprintf(ft,"%lf\t%d\n",0.0,0);	// Mass, gravity
+    fprintf(ft,"%lf\t%lf\t%lf\n",0.0,0.0,0.0); // Fx, Fy, Fz
+    fprintf(ft,"%lf\t%lf\t%lf\n",0.0,0.0,0.0); // Mx, My, Mz
 }

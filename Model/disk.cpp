@@ -88,7 +88,7 @@ double Disk::ComputeScale() const
 }
 
 void Disk::Zone(double time) {
-    double h,Nh;
+    double dh,Nh;
     double xe,ye,ze;
     xmax = -10000;
     ymax = -10000;
@@ -97,15 +97,15 @@ void Disk::Zone(double time) {
     ymin = 10000;
     zmin = 10000;
 
-    h = 0.0001;
+    dh = 0.0001;
     if(this->NonNullVelocity())
-        Nh = (int)(time/h);
+        Nh = (int)(time/dh);
     else
         Nh = 1;
 
     this->startAnime();
     for(int i = 0 ; i < Nh ; i++){
-        this->moveat(i*h, h);
+        this->moveat(i*dh, dh);
         xe = x-r*tx-r*sx;
         ye = y-r*ty-r*sy;
         ze = z-r*tz-r*sz;
@@ -153,9 +153,8 @@ void Disk::Zone(double time) {
 void Disk::Export(FILE *ft) {
     this->base();
     fprintf(ft,"%lf\t%lf\t%lf\n",x,y,z);
-    fprintf(ft,"%lf\t%lf\t%lf\n",nx,ny,nz);
-    fprintf(ft,"%lf\t%lf\t%lf\n",tx,ty,tz);
-    fprintf(ft,"%lf\t%lf\t%lf\n",sx,sy,sz);
+    computeQuaternion();
+    fprintf(ft,"%lf\t%lf\t%lf\t%lf\n",q0, q1, q2, q3);
     vx.Export(ft);
     vy.Export(ft);
     vz.Export(ft);
@@ -163,7 +162,7 @@ void Disk::Export(FILE *ft) {
     wy.Export(ft);
     wz.Export(ft);
     fprintf(ft,"%lf\t%lf\t%lf\n",orx,ory,orz);
-    fprintf(ft,"%d\n",0);
+    //fprintf(ft,"%d\n",0);
     fprintf(ft,"%lf\t%lf\n-9\n",r/1000.,r);
     fprintf(ft,"%lf\t%d\n",0.0,0);	// Mass, gravity
     fprintf(ft,"%lf\t%lf\t%lf\n",0.0,0.0,0.0); // Fx, Fy, Fz
