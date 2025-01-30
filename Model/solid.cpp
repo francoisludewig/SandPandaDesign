@@ -32,6 +32,20 @@ void Solid::ReadFromFile(FILE *ft)
 }
 
 
+void Solid::computeBaseFromQuaternion() {
+    nx = (1 - 2*q2*q2 - 2*q3*q3);
+    ny = (2*q1*q2 + 2*q3*q0);
+    nz = (2*q1*q3 - 2*q2*q0);
+
+    tx = (2*q1*q2 - 2*q3*q0);
+    ty = (1 - 2*q1*q1 - 2*q3*q3);
+    tz = (2*q2*q3 + 2*q1*q0);
+
+    sx = (2*q1*q3 + 2*q2*q0);
+    sy = (2*q2*q3 - 2*q1*q0);
+    sz = (1 - 2*q1*q1 - 2*q2*q2);
+}
+
 void Solid::computeQuaternion() {
     //double q0,q1,q2,q3;
     q1 = sqrt(-(ty+sz-nx-1)/4.);

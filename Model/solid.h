@@ -18,6 +18,7 @@ public:
     void startAnime();
     void stopAnime();
     void computeQuaternion();
+    void computeBaseFromQuaternion();
 
     bool NonNullVelocity();
 

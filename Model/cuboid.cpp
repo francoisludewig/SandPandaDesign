@@ -1,6 +1,7 @@
 #include "cuboid.h"
 
 #include <iostream>
+#include <cmath>
 
 Cuboid::Cuboid():Solid() {
     la = 0.25;

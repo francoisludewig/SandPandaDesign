@@ -1,5 +1,9 @@
 #include "containerrepository.h"
 
+#include <algorithm>
+
+#include "jsonserializer.h"
+
 ContainerRepository::ContainerRepository() {
     linkedCells = std::make_shared<LinkedCells>();
     setup = std::make_shared<Setup>(&lattices, linkedCells);
@@ -21,6 +25,22 @@ void ContainerRepository::Export(std::string directory) {
 }
 
 void ContainerRepository::exportContainer(std::string& directory) {
+
+    //Demo Json Serialization
+    Json::Value jsonValuePlans;
+    int index = 0;
+    for(auto& plan : plans) {
+        auto jvalue = JsonSerializer::PlanToJsonValue(plan);
+        jsonValuePlans[index] = jvalue;
+        auto new_plan = JsonSerializer::PlanFromJsonValue(jsonValuePlans[index]);
+        auto jvalue2 = JsonSerializer::PlanToJsonValue(new_plan);
+        std::cout << jvalue2.toStyledString() << std::endl;
+        index++;
+    }
+    std::cout << "Plan : " << jsonValuePlans.toStyledString() << std::endl;
+    //Fin Demo Json Serialization
+
+
     char filename[1024];
     // Exportation du fichier container.txt
     sprintf(filename,"%s/container.txt",directory.c_str());

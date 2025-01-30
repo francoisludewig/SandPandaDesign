@@ -35,6 +35,7 @@ SOURCES += \
     Presenter/velocitiespresenter.cpp \
     Presenter/velocitypresenter.cpp \
     Repository/containerrepository.cpp \
+    Repository/jsonserializer.cpp \
     Repository/sphererepository.cpp \
     Widgets/animationwidget.cpp \
     Widgets/conescombobox.cpp \
@@ -81,6 +82,7 @@ HEADERS += \
     Presenter/velocitiespresenter.h \
     Presenter/velocitypresenter.h \
     Repository/containerrepository.h \
+    Repository/jsonserializer.h \
     Repository/sphererepository.h \
     Widgets/animationwidget.h \
     Widgets/conescombobox.h \
@@ -112,3 +114,8 @@ LIBS += -lopengl32 -lglu32
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32: LIBS += -L$$PWD/../../../3rdparties/jsoncpp/lib/ -llibjsoncpp.dll
+
+INCLUDEPATH += $$PWD/../../../3rdparties/jsoncpp/include
+DEPENDPATH += $$PWD/../../../3rdparties/jsoncpp/include
