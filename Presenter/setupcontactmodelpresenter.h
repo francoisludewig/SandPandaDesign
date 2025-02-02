@@ -9,7 +9,6 @@ class SetupContactModelPresenter
 public:
     SetupContactModelPresenter();
 
-
     void setResitutionCoefficient(double value);
     void setNormalStiffness(double value);
     void setIsTangentialDynamicModel(bool value);

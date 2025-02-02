@@ -27,17 +27,13 @@ void ContainerRepository::Export(std::string directory) {
 void ContainerRepository::exportContainer(std::string& directory) {
 
     //Demo Json Serialization
-    Json::Value jsonValuePlans;
-    int index = 0;
-    for(auto& plan : plans) {
-        auto jvalue = JsonSerializer::PlanToJsonValue(plan);
-        jsonValuePlans[index] = jvalue;
-        auto new_plan = JsonSerializer::PlanFromJsonValue(jsonValuePlans[index]);
-        auto jvalue2 = JsonSerializer::PlanToJsonValue(new_plan);
-        std::cout << jvalue2.toStyledString() << std::endl;
-        index++;
-    }
-    std::cout << "Plan : " << jsonValuePlans.toStyledString() << std::endl;
+    auto jsonArray = JsonSerializer::PlansToJsonValue(this->plans);
+    plans.clear();
+    JsonSerializer::PlansFromJsonValue(jsonArray, this->plans);
+    std::cout << "Plan : " << jsonArray.toStyledString() << std::endl;
+
+
+
     //Fin Demo Json Serialization
 
 
@@ -348,14 +344,14 @@ void ContainerRepository::RemoveLattice(std::shared_ptr<Lattice> lattice) {
 
 
 std::shared_ptr<Cone> ContainerRepository::GetCone(int index) {
-    if(index >= 0 && index < cones.size()) {
+    if(index >= 0 && index < (int)cones.size()) {
         return cones[index];
     }
     return nullptr;
 }
 
 std::shared_ptr<Cuboid> ContainerRepository::GetCuboid(int index) {
-    if(index >= 0 && index < cuboids.size()) {
+    if(index >= 0 && index < (int)cuboids.size()) {
         return cuboids[index];
     }
     return nullptr;
@@ -366,14 +362,14 @@ std::shared_ptr<Setup> ContainerRepository::GetSetup() {
 }
 
 int ContainerRepository::GetIndexOfCone(std::shared_ptr<Cone> cone) {
-    for(int i = 0 ; i < cones.size() ; ++i)
+    for(int i = 0 ; i < (int)cones.size() ; ++i)
         if (cones[i] == cone)
             return i;
     return -1;
 }
 
 int ContainerRepository::GetIndexOfCuboid(std::shared_ptr<Cuboid> cuboid) {
-    for(int i = 0 ; i < cuboids.size() ; ++i)
+    for(int i = 0 ; i < (int)cuboids.size() ; ++i)
         if (cuboids[i] == cuboid)
             return i;
     return -1;
@@ -416,7 +412,18 @@ double ContainerRepository::ComputeZoom() {
     return zoom0;
 }
 
-
+int ContainerRepository::planCount() {return plans.size();}
+std::shared_ptr<Plan> ContainerRepository::getPlanAtIndex(int index) {return plans[index];}
+int ContainerRepository::diskCount() {return disks.size();}
+std::shared_ptr<Disk> ContainerRepository::getDiskAtIndex(int index) {return disks[index];}
+int ContainerRepository::coneCount() {return cones.size();}
+std::shared_ptr<Cone> ContainerRepository::getConeAtIndex(int index) {return cones[index];}
+int ContainerRepository::elbowCount() {return elbows.size();}
+std::shared_ptr<Elbow> ContainerRepository::getElbowAtIndex(int index) {return elbows[index];}
+int ContainerRepository::cuboidCount() {return cuboids.size();}
+std::shared_ptr<Cuboid> ContainerRepository::getCuboidAtIndex(int index) {return cuboids[index];}
+int ContainerRepository::latticeCount() {return lattices.size();}
+std::shared_ptr<Lattice> ContainerRepository::getLatticeAtIndex(int index) {return lattices[index];}
 
 
 

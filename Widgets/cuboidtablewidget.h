@@ -16,6 +16,7 @@ public slots:
     void on_remove_cuboid();
     void on_new_value(QTableWidgetItem*);
     void on_new_checkbox_value(int);
+    void LoadDataFromRepository();
 
 signals:
     void data_updated();
@@ -24,6 +25,9 @@ signals:
     void cuboids_updated(std::vector<CuboidPresenter> &cuboidPresenters);
 
 private:
+    void addCuboidToUI(std::shared_ptr<Cuboid>& cuboid);
+
+
     std::vector<CuboidPresenter> cuboidPresenters{};
 };
 

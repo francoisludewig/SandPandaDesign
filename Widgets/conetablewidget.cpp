@@ -7,9 +7,21 @@
 
 ConeTableWidget::ConeTableWidget(QWidget *parent) : QTableWidget(parent) {}
 
+void ConeTableWidget::LoadDataFromRepository() {
+    for(int i = 0 ; i < ContainerRepository::getInstance().coneCount() ; i++) {
+        auto cone = ContainerRepository::getInstance().GetCone(i);
+        addConeToUI(cone);
+    }
+}
+
 void ConeTableWidget::on_add_cone()
 {
     auto cone = ContainerRepository::getInstance().AddCone();
+    addConeToUI(cone);
+}
+
+
+void ConeTableWidget::addConeToUI(std::shared_ptr<Cone>& cone) {
     ConePresenter conePresenter(cone);
     this->conePresenters.push_back(conePresenter);
 
@@ -37,6 +49,7 @@ void ConeTableWidget::on_add_cone()
     emit cones_updated(this->conePresenters);
     emit data_updated();
 }
+
 
 void ConeTableWidget::on_remove_cone()
 {

@@ -7,9 +7,21 @@
 
 DiskTableWidget::DiskTableWidget(QWidget *parent) : QTableWidget(parent) {}
 
+
+void DiskTableWidget::LoadDataFromRepository() {
+    for(int i = 0 ; i < ContainerRepository::getInstance().diskCount() ; i++) {
+        auto item = ContainerRepository::getInstance().getDiskAtIndex(i);
+        addDiskToUI(item);
+    }
+}
+
 void DiskTableWidget::on_add_disk()
 {
     auto disk = ContainerRepository::getInstance().AddDisk();
+    addDiskToUI(disk);
+}
+
+void DiskTableWidget::addDiskToUI(std::shared_ptr<Disk>& disk) {
     DiskPresenter diskPresenter(disk);
     this->diskPresenters.push_back(diskPresenter);
 
@@ -31,6 +43,7 @@ void DiskTableWidget::on_add_disk()
     emit new_disk(disk);
     emit data_updated();
 }
+
 
 void DiskTableWidget::on_remove_disk()
 {

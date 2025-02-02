@@ -14,6 +14,7 @@ public slots:
     void on_add_elbow();
     void on_remove_elbow();
     void on_new_value(QTableWidgetItem*);
+    void LoadDataFromRepository();
 
 signals:
     void data_updated();
@@ -21,6 +22,9 @@ signals:
     void remove_elbow(int index);
 
 private:
+    void addElbowToUI(std::shared_ptr<Elbow>& elbow);
+
+
     std::vector<ElbowPresenter> elbowPresenters{};
 };
 

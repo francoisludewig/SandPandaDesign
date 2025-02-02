@@ -10,11 +10,13 @@ class ConeTableWidget : public QTableWidget
 public:
     ConeTableWidget(QWidget *parent);
 
+
 public slots:
     void on_add_cone();
     void on_remove_cone();
     void on_new_value(QTableWidgetItem*);
     void on_new_checkbox_value(int);
+    void LoadDataFromRepository();
 
 signals:
     void data_updated();
@@ -23,6 +25,9 @@ signals:
     void cones_updated(std::vector<ConePresenter> &conePresenters);
 
 private:
+    void addConeToUI(std::shared_ptr<Cone>& cone);
+
+
     std::vector<ConePresenter> conePresenters{};
 };
 

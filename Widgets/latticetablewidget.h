@@ -29,6 +29,7 @@ public slots:
     void on_update_from_container();
 
     void on_new_selected_row(int row, int col);
+    void LoadDataFromRepository();
 
 signals:
     void data_updated();
@@ -36,6 +37,8 @@ signals:
     void remove_lattice(int index);
 
 private:
+    void addLatticeToUI(std::shared_ptr<Lattice>& lattice);
+
     std::vector<LatticePresenter> latticePresenters{};
 };
 

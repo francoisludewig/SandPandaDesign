@@ -4,9 +4,21 @@
 
 LatticeTableWidget::LatticeTableWidget(QWidget *parent) : QTableWidget(parent) {}
 
+
+void LatticeTableWidget::LoadDataFromRepository() {
+    for(int i = 0 ; i < ContainerRepository::getInstance().latticeCount() ; i++) {
+        auto item = ContainerRepository::getInstance().getLatticeAtIndex(i);
+        addLatticeToUI(item);
+    }
+}
+
 void LatticeTableWidget::on_add_lattice()
 {
     auto lattice = ContainerRepository::getInstance().AddLattice();
+    addLatticeToUI(lattice);
+}
+
+void LatticeTableWidget::addLatticeToUI(std::shared_ptr<Lattice>& lattice) {
     LatticePresenter latticePresenter(lattice);
     this->latticePresenters.push_back(latticePresenter);
 
@@ -32,6 +44,7 @@ void LatticeTableWidget::on_add_lattice()
     emit new_lattice(lattice);
     emit data_updated();
 }
+
 
 void LatticeTableWidget::on_remove_lattice()
 {

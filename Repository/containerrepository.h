@@ -14,6 +14,8 @@
 #include "Model/setup.h"
 #include "Model/linkedcells.h"
 
+#include "jsonserializer.h"
+
 class ContainerRepository
 {
 public:
@@ -47,6 +49,22 @@ public:
     void Export(std::string directory);
 
     double ComputeZoom();
+
+    int planCount();
+    std::shared_ptr<Plan> getPlanAtIndex(int index);
+    int diskCount();
+    std::shared_ptr<Disk> getDiskAtIndex(int index);
+    int coneCount();
+    std::shared_ptr<Cone> getConeAtIndex(int index);
+    int elbowCount();
+    std::shared_ptr<Elbow> getElbowAtIndex(int index);
+    int cuboidCount();
+    std::shared_ptr<Cuboid> getCuboidAtIndex(int index);
+    int latticeCount();
+    std::shared_ptr<Lattice> getLatticeAtIndex(int index);
+
+
+
 private:
     ContainerRepository(); // Prevent construction
     ContainerRepository(const ContainerRepository&) = default; // Prevent construction by copying
@@ -62,8 +80,10 @@ private:
     std::vector< std::shared_ptr<Elbow> > elbows {};
     std::vector< std::shared_ptr<Cuboid> > cuboids {};
     std::vector< std::shared_ptr<Lattice> > lattices {};
-    std::shared_ptr<Setup> setup;
+    std::shared_ptr<Setup> setup {};
     std::shared_ptr<LinkedCells> linkedCells;
+    friend Json::Value JsonSerializer::DesignToJsonValue();
+    friend void JsonSerializer::DesignFromJsonValue(std::string jsonAsString);
 };
 
 #endif // CONTAINERREPOSITORY_H

@@ -8,7 +8,6 @@ SetupTimeWidget::SetupTimeWidget(QWidget *parent)
     setupTimePresenter = std::make_unique<SetupTimePresenter>(SetupTimePresenter());
 }
 
-
 void SetupTimeWidget::on_compute_timestep(bool checked) {
     std::cout << "Compute time step !" << std::endl;
     this->timestepField->setText(QString::number(setupTimePresenter->ComputeTimestep()));

@@ -157,6 +157,14 @@ void MainWindow::InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget) 
 
 void MainWindow::InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget) {
     connect(ui->exportButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_export);
+    connect(ui->saveButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_save);
+    connect(ui->loadButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_load);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->coneTableWidget, &ConeTableWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->cuboidTableWidget, &CuboidTableWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->diskTableWidget, &DiskTableWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->planTableWidget, &PlanTableWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->elbowTableWidget, &ElbowTableWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->latticeTableWidget, &LatticeTableWidget::LoadDataFromRepository);
 }
 
 MainWindow::MainWindow(QWidget *parent)

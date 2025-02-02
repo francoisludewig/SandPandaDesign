@@ -7,9 +7,20 @@
 
 ElbowTableWidget::ElbowTableWidget(QWidget *parent) : QTableWidget(parent) {}
 
+void ElbowTableWidget::LoadDataFromRepository() {
+    for(int i = 0 ; i < ContainerRepository::getInstance().elbowCount() ; i++) {
+        auto item = ContainerRepository::getInstance().getElbowAtIndex(i);
+        addElbowToUI(item);
+    }
+}
+
 void ElbowTableWidget::on_add_elbow()
 {
     auto elbow = ContainerRepository::getInstance().AddElbow();
+    addElbowToUI(elbow);
+}
+
+void ElbowTableWidget::addElbowToUI(std::shared_ptr<Elbow>& elbow) {
     ElbowPresenter elbowPresenter(elbow);
     this->elbowPresenters.push_back(elbowPresenter);
 
@@ -34,6 +45,7 @@ void ElbowTableWidget::on_add_elbow()
     emit new_elbow(elbow);
     emit data_updated();
 }
+
 
 void ElbowTableWidget::on_remove_elbow()
 {

@@ -15,6 +15,7 @@ public slots:
     void on_remove_plan();
     void on_new_value(QTableWidgetItem*);
     void on_new_checkbox_value(int);
+    void LoadDataFromRepository();
 
 signals:
     void data_updated();
@@ -22,6 +23,8 @@ signals:
     void remove_plan(int index);
 
 private:
+    void addPlanToUI(std::shared_ptr<Plan>& plan);
+
     std::vector<PlanPresenter> planPresenters{};
 };
 

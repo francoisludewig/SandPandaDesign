@@ -15,6 +15,7 @@ public slots:
     void on_remove_disk();
     void on_new_value(QTableWidgetItem*);
     void on_new_checkbox_value(int);
+    void LoadDataFromRepository();
 
 signals:
     void data_updated();
@@ -22,6 +23,8 @@ signals:
     void remove_disk(int index);
 
 private:
+    void addDiskToUI(std::shared_ptr<Disk>& disk);
+
     std::vector<DiskPresenter> diskPresenters{};
 };
 

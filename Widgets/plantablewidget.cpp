@@ -7,9 +7,21 @@
 
 PlanTableWidget::PlanTableWidget(QWidget *parent) : QTableWidget(parent) {}
 
+
+void PlanTableWidget::LoadDataFromRepository() {
+    for(int i = 0 ; i < ContainerRepository::getInstance().planCount() ; i++) {
+        auto item = ContainerRepository::getInstance().getPlanAtIndex(i);
+        addPlanToUI(item);
+    }
+}
+
 void PlanTableWidget::on_add_plan()
 {
     auto plan = ContainerRepository::getInstance().AddPlan();
+    addPlanToUI(plan);
+}
+
+void PlanTableWidget::addPlanToUI(std::shared_ptr<Plan>& plan) {
     PlanPresenter planPresenter(plan);
     this->planPresenters.push_back(planPresenter);
 

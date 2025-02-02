@@ -2953,12 +2953,38 @@
             <rect>
              <x>20</x>
              <y>30</y>
-             <width>171</width>
+             <width>141</width>
              <height>24</height>
             </rect>
            </property>
            <property name="text">
             <string>Export</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="saveButton">
+           <property name="geometry">
+            <rect>
+             <x>200</x>
+             <y>30</y>
+             <width>131</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="loadButton">
+           <property name="geometry">
+            <rect>
+             <x>370</x>
+             <y>30</y>
+             <width>131</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Load</string>
            </property>
           </widget>
          </widget>

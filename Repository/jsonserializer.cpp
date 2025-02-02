@@ -1,6 +1,142 @@
 #include "jsonserializer.h"
 
+#include "containerrepository.h"
+
+#include <json/reader.h>
+
 JsonSerializer::JsonSerializer() {}
+
+Json::Value JsonSerializer::DesignToJsonValue() {
+    Json::Value jsonValue;
+    jsonValue["plans"] = PlansToJsonValue(ContainerRepository::getInstance().plans);
+    jsonValue["disks"] = DisksToJsonValue(ContainerRepository::getInstance().disks);
+    jsonValue["elbows"] = ElbowsToJsonValue(ContainerRepository::getInstance().elbows);
+    jsonValue["cones"] = ConesToJsonValue(ContainerRepository::getInstance().cones);
+    jsonValue["cuboids"] = CuboidsToJsonValue(ContainerRepository::getInstance().cuboids);
+    jsonValue["lattices"] = LatticesToJsonValue(ContainerRepository::getInstance().lattices);
+    jsonValue["setup"] = SetupToJsonValue(ContainerRepository::getInstance().setup);
+    return jsonValue;
+}
+
+void JsonSerializer::DesignFromJsonValue(std::string jsonAsString) {
+    Json::Value jsonValue;
+    Json::Reader reader;
+    if (!reader.parse(jsonAsString.c_str(), jsonValue)){
+        std::cout  << "Failed to parse"
+                  << reader.getFormattedErrorMessages();
+    } else {
+        if(jsonValue["plans"].isNull())
+            PlansFromJsonValue(jsonValue["plans"] , ContainerRepository::getInstance().plans);
+        if(!jsonValue["disks"].isNull())
+            DisksFromJsonValue(jsonValue["disks"], ContainerRepository::getInstance().disks);
+        if(!jsonValue["elbows"].isNull())
+            ElbowsFromJsonValue(jsonValue["elbows"], ContainerRepository::getInstance().elbows);
+        if(!jsonValue["cones"].isNull())
+            ConesFromJsonValue(jsonValue["cones"], ContainerRepository::getInstance().cones);
+        if(!jsonValue["cuboids"].isNull())
+            CuboidsFromJsonValue(jsonValue["cuboids"], ContainerRepository::getInstance().cuboids);
+        if(!jsonValue["lattices"].isNull())
+            LatticesFromJsonValue(jsonValue["lattices"], ContainerRepository::getInstance().lattices);
+        ContainerRepository::getInstance().setup = SetupFromJsonValue(jsonValue["setup"], &ContainerRepository::getInstance().lattices,  ContainerRepository::getInstance().linkedCells);
+    }
+}
+
+Json::Value JsonSerializer::PlansToJsonValue(std::vector< std::shared_ptr<Plan> >& plans) {
+    Json::Value jsonArray;
+    int index = 0;
+    for(auto& item : plans) {
+        jsonArray[index] = PlanToJsonValue(item);
+        index++;
+    }
+    return jsonArray;
+}
+
+void JsonSerializer::PlansFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr<Plan> >& plans) {
+    for(auto& jsonValue : jsonArray) {
+        plans.push_back(PlanFromJsonValue(jsonValue));
+    }
+}
+
+Json::Value JsonSerializer::DisksToJsonValue(std::vector< std::shared_ptr<Disk> >& disks) {
+    Json::Value jsonArray;
+    int index = 0;
+    for(auto& item : disks) {
+        jsonArray[index] = DiskToJsonValue(item);
+        index++;
+    }
+    return jsonArray;
+}
+
+void JsonSerializer::DisksFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr<Disk> >& disks) {
+    for(auto& jsonValue : jsonArray) {
+        disks.push_back(DiskFromJsonValue(jsonValue));
+    }
+}
+
+Json::Value JsonSerializer::ConesToJsonValue(std::vector< std::shared_ptr<Cone> >& cones) {
+    Json::Value jsonArray;
+    int index = 0;
+    for(auto& item : cones) {
+        jsonArray[index] = ConeToJsonValue(item);
+        index++;
+    }
+    return jsonArray;
+}
+
+void JsonSerializer::ConesFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr<Cone> >& cones) {
+    for(auto& jsonValue : jsonArray) {
+        cones.push_back(ConeFromJsonValue(jsonValue));
+    }
+}
+
+
+Json::Value JsonSerializer::ElbowsToJsonValue(std::vector< std::shared_ptr<Elbow> >& elbows) {
+    Json::Value jsonArray;
+    int index = 0;
+    for(auto& item : elbows) {
+        jsonArray[index] = ElbowToJsonValue(item);
+        index++;
+    }
+    return jsonArray;
+}
+
+void JsonSerializer::ElbowsFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr<Elbow> >& elbows) {
+    for(auto& jsonValue : jsonArray) {
+        elbows.push_back(ElbowFromJsonValue(jsonValue));
+    }
+}
+
+Json::Value JsonSerializer::CuboidsToJsonValue(std::vector< std::shared_ptr<Cuboid> >& cuboids) {
+    Json::Value jsonArray;
+    int index = 0;
+    for(auto& item : cuboids) {
+        jsonArray[index] = CuboidToJsonValue(item);
+        index++;
+    }
+    return jsonArray;
+}
+
+void JsonSerializer::CuboidsFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr<Cuboid> >& cuboids) {
+    for(auto& jsonValue : jsonArray) {
+        cuboids.push_back(CuboidFromJsonValue(jsonValue));
+    }
+}
+
+Json::Value JsonSerializer::LatticesToJsonValue(std::vector< std::shared_ptr< Lattice> >&  lattices) {
+    Json::Value jsonArray;
+    int index = 0;
+    for(auto& item : lattices) {
+        jsonArray[index] = LatticeToJsonValue(item);
+        index++;
+    }
+    return jsonArray;
+}
+
+void  JsonSerializer::LatticesFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr< Lattice> >& lattices) {
+    for(auto& jsonValue : jsonArray) {
+        lattices.push_back(LatticeFromJsonValue(jsonValue));
+    }
+}
 
 Json::Value JsonSerializer::VelocityToJsonValue(Velocity& velocity) {
     Json::Value jsonV;
@@ -316,5 +452,6 @@ std::shared_ptr<Setup> JsonSerializer::SetupFromJsonValue(Json::Value& jsonValue
 
     setup->Nsp = jsonValue["Nsp"].asDouble();
 
+    // TODO Link ??
     return setup;
 }

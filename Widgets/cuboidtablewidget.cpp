@@ -5,9 +5,20 @@
 CuboidTableWidget::CuboidTableWidget(QWidget *parent) : QTableWidget(parent) {}
 
 
+void CuboidTableWidget::LoadDataFromRepository() {
+    for(int i = 0 ; i < ContainerRepository::getInstance().cuboidCount() ; i++) {
+        auto cuboid = ContainerRepository::getInstance().GetCuboid(i);
+        addCuboidToUI(cuboid);
+    }
+}
+
 void CuboidTableWidget::on_add_cuboid()
 {
     auto cuboid = ContainerRepository::getInstance().AddCuboid();
+    addCuboidToUI(cuboid);
+}
+
+void CuboidTableWidget::addCuboidToUI(std::shared_ptr<Cuboid>& cuboid) {
     CuboidPresenter cuboidPresenter(cuboid);
     this->cuboidPresenters.push_back(cuboidPresenter);
 
@@ -36,6 +47,7 @@ void CuboidTableWidget::on_add_cuboid()
     emit cuboids_updated(this->cuboidPresenters);
     emit data_updated();
 }
+
 
 void CuboidTableWidget::on_remove_cuboid()
 {
