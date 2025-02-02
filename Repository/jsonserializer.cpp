@@ -37,7 +37,7 @@ void JsonSerializer::DesignFromJsonValue(std::string jsonAsString) {
             CuboidsFromJsonValue(jsonValue["cuboids"], ContainerRepository::getInstance().cuboids);
         if(!jsonValue["lattices"].isNull())
             LatticesFromJsonValue(jsonValue["lattices"], ContainerRepository::getInstance().lattices);
-        ContainerRepository::getInstance().setup = SetupFromJsonValue(jsonValue["setup"], &ContainerRepository::getInstance().lattices,  ContainerRepository::getInstance().linkedCells);
+        SetupFromJsonValue(jsonValue["setup"], ContainerRepository::getInstance().GetSetup());
     }
 }
 
@@ -419,8 +419,7 @@ Json::Value JsonSerializer::SetupToJsonValue(std::shared_ptr<Setup>& setup) {
     return jsonSetup;
 }
 
-std::shared_ptr<Setup> JsonSerializer::SetupFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr<Lattice> > *lattices, std::shared_ptr<LinkedCells> linkedCells) {
-    auto setup = std::make_shared<Setup>(lattices, linkedCells);
+void JsonSerializer::SetupFromJsonValue(Json::Value& jsonValue, std::shared_ptr<Setup> setup) {
     setup->resitutionCoefficient = jsonValue["resitutionCoefficient"].asDouble();
     setup->normalStiffness = jsonValue["normalStiffness"].asDouble();
     setup->staticFrictionCoefficient = jsonValue["staticFrictionCoefficient"].asDouble();
@@ -453,5 +452,4 @@ std::shared_ptr<Setup> JsonSerializer::SetupFromJsonValue(Json::Value& jsonValue
     setup->Nsp = jsonValue["Nsp"].asDouble();
 
     // TODO Link ??
-    return setup;
 }

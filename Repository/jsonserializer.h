@@ -58,7 +58,7 @@ private:
     static std::shared_ptr<Lattice> LatticeFromJsonValue(Json::Value& jsonValue);
 
     static Json::Value SetupToJsonValue(std::shared_ptr<Setup>& lattice);
-    static std::shared_ptr<Setup> SetupFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr<Lattice> > *lattices, std::shared_ptr<LinkedCells> linkedCells);
+    static void SetupFromJsonValue(Json::Value& jsonValue, std::shared_ptr<Setup> setup);
 
     static Json::Value SolidToJsonValue(std::shared_ptr<Solid>& solid);
     static void SolidFromJsonValue(std::shared_ptr<Solid>& solid, Json::Value& jsonValue);

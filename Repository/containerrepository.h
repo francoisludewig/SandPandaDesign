@@ -80,7 +80,7 @@ private:
     std::vector< std::shared_ptr<Elbow> > elbows {};
     std::vector< std::shared_ptr<Cuboid> > cuboids {};
     std::vector< std::shared_ptr<Lattice> > lattices {};
-    std::shared_ptr<Setup> setup {};
+    std::shared_ptr<Setup> setup;
     std::shared_ptr<LinkedCells> linkedCells;
     friend Json::Value JsonSerializer::DesignToJsonValue();
     friend void JsonSerializer::DesignFromJsonValue(std::string jsonAsString);
