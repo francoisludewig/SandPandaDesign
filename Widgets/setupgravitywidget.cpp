@@ -79,3 +79,29 @@ void SetupGravityWidget::on_new_gravity_vz_p(const QString& newText) {
     setupGraviptyPresenter->setWzP(newText.toDouble());
     std::cout << "New gravity vz phase p : " << newText.toStdString() << std::endl;
 }
+
+void SetupGravityWidget::LoadDataFromRepository() {
+    componants["gravity_acceleration_field"]->setText(QString::number(setupGraviptyPresenter->getAcceleration()));
+
+    componants["gravity_x_direction_field"]->setText(QString::number(setupGraviptyPresenter->getXdirection()));
+    componants["gravity_y_direction_field"]->setText(QString::number(setupGraviptyPresenter->getYdirection()));
+    componants["gravity_z_direction_field"]->setText(QString::number(setupGraviptyPresenter->getZdirection()));
+
+    componants["gravity_vx_a0_field"]->setText(QString::number(setupGraviptyPresenter->getWxA0()));
+    componants["gravity_vx_a1_field"]->setText(QString::number(setupGraviptyPresenter->getWxA1()));
+    componants["gravity_vx_w_field"]->setText(QString::number(setupGraviptyPresenter->getWxW()));
+    componants["gravity_vx_p_field"]->setText(QString::number(setupGraviptyPresenter->getWxP()));
+
+    componants["gravity_vy_a0_field"]->setText(QString::number(setupGraviptyPresenter->getWyA0()));
+    componants["gravity_vy_a1_field"]->setText(QString::number(setupGraviptyPresenter->getWyA1()));
+    componants["gravity_vy_w_field"]->setText(QString::number(setupGraviptyPresenter->getWyW()));
+    componants["gravity_vy_p_field"]->setText(QString::number(setupGraviptyPresenter->getWyP()));
+
+    componants["gravity_vz_a0_field"]->setText(QString::number(setupGraviptyPresenter->getWzA0()));
+    componants["gravity_vz_a1_field"]->setText(QString::number(setupGraviptyPresenter->getWzA1()));
+    componants["gravity_vz_w_field"]->setText(QString::number(setupGraviptyPresenter->getWzW()));
+    componants["gravity_vz_p_field"]->setText(QString::number(setupGraviptyPresenter->getWzP()));
+}
+
+
+

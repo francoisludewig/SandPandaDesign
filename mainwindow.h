@@ -35,7 +35,7 @@ private:
     void InitSetupTimeWidget(SetupTimeWidget* setupTimeWidget );
     void InitSetupContactModelWidget(SetupContactModelWidget* setupContactModelWidget );
     void InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget);
-    void InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget);
+    void InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget, SetupTimeWidget* setupTimeWidget, SetupContactModelWidget* setupContactModelWidge, SetupGravityWidget* setupGravityWidget);
 public slots:
 
 

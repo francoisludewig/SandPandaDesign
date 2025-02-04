@@ -15,6 +15,15 @@ public:
     void setStaticFrictionCoefficient(double value);
     void setDynamicFrictionCoefficient(double value);
 
+
+    double GetResitutionCoefficient();
+    double GetNormalStiffness();
+    bool GetIsTangentialDynamicModel();
+    double GetStaticFrictionCoefficient();
+    double GetDynamicFrictionCoefficient();
+
+
+
 private:
     std::shared_ptr<Setup> setup;
 };

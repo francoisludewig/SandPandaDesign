@@ -12,6 +12,21 @@ void SetupContactModelWidget::setStaticFrictionCoefficient(QLineEdit* staticFric
     this->staticFrictionCoefficient = staticFrictionCoefficient;
 }
 
+void SetupContactModelWidget::setRestitutionField(QLineEdit* restitutionField) {
+    this->restitutionField = restitutionField;
+}
+void SetupContactModelWidget::setStiffnessField(QLineEdit* stiffnessField) {
+    this->stiffnessField = stiffnessField;
+}
+
+void SetupContactModelWidget::setDynFrictionField(QLineEdit* dynFrictionField) {
+    this->dynFrictionField = dynFrictionField;
+}
+
+void SetupContactModelWidget::setTangentialModelComboBox(QComboBox* tangentialModelComboBox) {
+    this->tangentialModelComboBox = tangentialModelComboBox;
+}
+
 void SetupContactModelWidget::setStaticFrictionCoefficientLabel(QLabel* staticFrictionCoefficientLabel) {
     this->staticFrictionCoefficientLabel = staticFrictionCoefficientLabel;
 }
@@ -51,3 +66,16 @@ void SetupContactModelWidget::on_new_tangential_model(int index) {
         staticFrictionCoefficientLabel->setPalette(*palette);
     }
 }
+
+
+void SetupContactModelWidget::LoadDataFromRepository() {
+    staticFrictionCoefficient->setText(QString::number(setupContactModelPresenter->GetStaticFrictionCoefficient()));
+    restitutionField->setText(QString::number(setupContactModelPresenter->GetResitutionCoefficient()));
+    stiffnessField->setText(QString::number(setupContactModelPresenter->GetNormalStiffness()));
+    dynFrictionField->setText(QString::number(setupContactModelPresenter->GetDynamicFrictionCoefficient()));
+    tangentialModelComboBox->setCurrentIndex(setupContactModelPresenter->GetIsTangentialDynamicModel());
+}
+
+
+
+

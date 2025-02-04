@@ -11,6 +11,9 @@ class SetupTimeWidget : public QWidget
 public:
     explicit SetupTimeWidget(QWidget *parent = nullptr);
     void setTimesetpField(QLineEdit* timestepField);
+    void setStartingTimeField(QLineEdit* startingTimeField);
+    void setCaptureDelayField(QLineEdit* captureDelayField);
+    void setDurationField(QLineEdit* durationField);
 
 
 public slots:
@@ -19,9 +22,14 @@ public slots:
     void on_new_time_step(const QString& newText);
     void on_new_capture_delay(const QString& newText);
     void on_new_duration(const QString& newText);
+    void LoadDataFromRepository();
 
 private:
     QLineEdit* timestepField = nullptr;
+    QLineEdit* startingTimeField = nullptr;
+    QLineEdit* captureDelayField = nullptr;
+    QLineEdit* durationField = nullptr;
+
     std::unique_ptr<SetupTimePresenter> setupTimePresenter;
 };
 

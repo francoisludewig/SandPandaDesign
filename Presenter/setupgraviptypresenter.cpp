@@ -66,3 +66,21 @@ void SetupGraviptyPresenter::setWzW(double value) {
 void SetupGraviptyPresenter::setWzP(double value) {
     setup->gWzP = value;
 }
+
+double SetupGraviptyPresenter::getAcceleration() {return setup->gravityAcceleration;}
+double SetupGraviptyPresenter::getXdirection() {return setup->gravityX;}
+double SetupGraviptyPresenter::getYdirection() {return setup->gravityY;}
+double SetupGraviptyPresenter::getZdirection() {return setup->gravityZ;}
+
+double SetupGraviptyPresenter::getWxA0() {return setup->gWxA0;}
+double SetupGraviptyPresenter::getWxA1() {return setup->gWxA1;}
+double SetupGraviptyPresenter::getWxW() {return setup->gWxW;}
+double SetupGraviptyPresenter::getWxP() {return setup->gWxP;}
+double SetupGraviptyPresenter::getWyA0() {return setup->gWyA0;}
+double SetupGraviptyPresenter::getWyA1() {return setup->gWyA1;}
+double SetupGraviptyPresenter::getWyW() {return setup->gWyW;}
+double SetupGraviptyPresenter::getWyP() {return setup->gWyP;}
+double SetupGraviptyPresenter::getWzA0() {return setup->gWzA0;}
+double SetupGraviptyPresenter::getWzA1() {return setup->gWzA1;}
+double SetupGraviptyPresenter::getWzW() {return setup->gWzW;}
+double SetupGraviptyPresenter::getWzP() {return setup->gWzP;}

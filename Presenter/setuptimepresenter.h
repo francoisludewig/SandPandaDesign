@@ -17,6 +17,10 @@ public:
     double ComputeTimestep();
 
 
+    double GetStartTime();
+    double GetDuration();
+    double GetTimestep();
+    double GetCaptureDelay();
 private:
     std::shared_ptr<Setup> setup;
 };

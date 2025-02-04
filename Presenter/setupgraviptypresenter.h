@@ -28,6 +28,24 @@ public:
     void setWzP(double value);
 
 
+    double getAcceleration();
+    double getXdirection();
+    double getYdirection();
+    double getZdirection();
+
+    double getWxA0();
+    double getWxA1();
+    double getWxW();
+    double getWxP();
+    double getWyA0();
+    double getWyA1();
+    double getWyW();
+    double getWyP();
+    double getWzA0();
+    double getWzA1();
+    double getWzW();
+    double getWzP();
+
 private:
     std::shared_ptr<Setup> setup;
 };

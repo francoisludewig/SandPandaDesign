@@ -34,3 +34,22 @@ void SetupTimeWidget::on_new_duration(const QString& newText) {
 void SetupTimeWidget::setTimesetpField(QLineEdit* timestepField) {
     this->timestepField = timestepField;
 }
+
+void SetupTimeWidget::setStartingTimeField(QLineEdit* startingTimeField) {
+    this->startingTimeField = startingTimeField;
+}
+
+void SetupTimeWidget::setCaptureDelayField(QLineEdit* captureDelayField) {
+    this->captureDelayField = captureDelayField;
+}
+
+void SetupTimeWidget::setDurationField(QLineEdit* durationField) {
+    this->durationField = durationField;
+}
+
+void SetupTimeWidget::LoadDataFromRepository() {
+    this->timestepField->setText(QString::number(setupTimePresenter->GetTimestep()));
+    this->startingTimeField->setText(QString::number(setupTimePresenter->GetStartTime()));
+    this->captureDelayField->setText(QString::number(setupTimePresenter->GetCaptureDelay()));
+    this->durationField->setText(QString::number(setupTimePresenter->GetDuration()));
+}

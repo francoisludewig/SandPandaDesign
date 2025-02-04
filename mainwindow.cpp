@@ -117,6 +117,9 @@ void MainWindow::InitSetupTimeWidget(SetupTimeWidget* setupTimeWidget) {
     connect(ui->durationField, &QLineEdit::textChanged, setupTimeWidget, &SetupTimeWidget::on_new_duration);
     connect(ui->computeTimestep, &QPushButton::clicked , setupTimeWidget, &SetupTimeWidget::on_compute_timestep);
     setupTimeWidget->setTimesetpField(ui->timestepField);
+    setupTimeWidget->setStartingTimeField(ui->startingTimeField);
+    setupTimeWidget->setCaptureDelayField(ui->captureDelayField);
+    setupTimeWidget->setDurationField(ui->durationField);
 }
 
 void MainWindow::InitSetupContactModelWidget(SetupContactModelWidget* setupContactModelWidget) {
@@ -126,6 +129,10 @@ void MainWindow::InitSetupContactModelWidget(SetupContactModelWidget* setupConta
     connect(ui->dynFrictionField, &QLineEdit::textChanged, setupContactModelWidget, &SetupContactModelWidget::on_new_dynamic_friction_coefficient);
     connect(ui->tangentialModelComboBox, &QComboBox::currentIndexChanged, setupContactModelWidget, &SetupContactModelWidget::on_new_tangential_model);
     setupContactModelWidget->setStaticFrictionCoefficient(ui->staticFrictionField);
+    setupContactModelWidget->setRestitutionField(ui->restitutionField);
+    setupContactModelWidget->setStiffnessField(ui->stiffnessField);
+    setupContactModelWidget->setDynFrictionField(ui->dynFrictionField);
+    setupContactModelWidget->setTangentialModelComboBox(ui->tangentialModelComboBox);
     setupContactModelWidget->setStaticFrictionCoefficientLabel(ui->static_friction_coefficient_label);
 }
 
@@ -137,7 +144,6 @@ void MainWindow::InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget) 
     connect(ui->gravity_x_direction_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_x_direction);
     connect(ui->gravity_y_direction_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_y_direction);
     connect(ui->gravity_z_direction_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_z_direction);
-
 
     connect(ui->gravity_vx_a0_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vx_A0);
     connect(ui->gravity_vx_a1_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vx_A1);
@@ -153,9 +159,26 @@ void MainWindow::InitSetupGravityWidget(SetupGravityWidget* setupGravityWidget) 
     connect(ui->gravity_vz_a1_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vz_A1);
     connect(ui->gravity_vz_w_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vz_w);
     connect(ui->gravity_vz_p_field, &QLineEdit::textChanged, setupGravityWidget, &SetupGravityWidget::on_new_gravity_vz_p);
+
+    setupGravityWidget->setComponant("gravity_acceleration_field", ui->gravity_acceleration_field);
+    setupGravityWidget->setComponant("gravity_x_direction_field", ui->gravity_x_direction_field);
+    setupGravityWidget->setComponant("gravity_y_direction_field", ui->gravity_y_direction_field);
+    setupGravityWidget->setComponant("gravity_z_direction_field", ui->gravity_z_direction_field);
+    setupGravityWidget->setComponant("gravity_vx_a0_field", ui->gravity_vx_a0_field);
+    setupGravityWidget->setComponant("gravity_vx_a1_field", ui->gravity_vx_a1_field);
+    setupGravityWidget->setComponant("gravity_vx_w_field", ui->gravity_vx_w_field);
+    setupGravityWidget->setComponant("gravity_vx_p_field", ui->gravity_vx_p_field);
+    setupGravityWidget->setComponant("gravity_vy_a0_field", ui->gravity_vy_a0_field);
+    setupGravityWidget->setComponant("gravity_vy_a1_field", ui->gravity_vy_a1_field);
+    setupGravityWidget->setComponant("gravity_vy_w_field", ui->gravity_vy_w_field);
+    setupGravityWidget->setComponant("gravity_vy_p_field", ui->gravity_vy_p_field);
+    setupGravityWidget->setComponant("gravity_vz_a0_field", ui->gravity_vz_a0_field);
+    setupGravityWidget->setComponant("gravity_vz_a1_field", ui->gravity_vz_a1_field);
+    setupGravityWidget->setComponant("gravity_vz_w_field", ui->gravity_vz_w_field);
+    setupGravityWidget->setComponant("gravity_vz_p_field", ui->gravity_vz_p_field);
 }
 
-void MainWindow::InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget) {
+void MainWindow::InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwidget, SetupTimeWidget* setupTimeWidget, SetupContactModelWidget* setupContactModelWidge, SetupGravityWidget* setupGravityWidget) {
     connect(ui->exportButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_export);
     connect(ui->saveButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_save);
     connect(ui->loadButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_load);
@@ -165,6 +188,9 @@ void MainWindow::InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwi
     connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->planTableWidget, &PlanTableWidget::LoadDataFromRepository);
     connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->elbowTableWidget, &ElbowTableWidget::LoadDataFromRepository);
     connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->latticeTableWidget, &LatticeTableWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, setupTimeWidget, &SetupTimeWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, setupContactModelWidge, &SetupContactModelWidget::LoadDataFromRepository);
+    connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, setupGravityWidget, &SetupGravityWidget::LoadDataFromRepository);
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -191,7 +217,7 @@ MainWindow::MainWindow(QWidget *parent)
     InitSetupTimeWidget(setupTimeWidget);
     InitSetupContactModelWidget(setupContactModelWidget);
     InitSetupGravityWidget(setupGravityWidget);
-    InitSaveLoadExportWidget(saveloadexportwidget);
+    InitSaveLoadExportWidget(saveloadexportwidget, setupTimeWidget, setupContactModelWidget, setupGravityWidget);
 
     connect(ui->drawBaseCheckBox, &QCheckBox::stateChanged, myGLWidget, &MyGLWidget::on_new_drawBase_state);
     connect(ui->containerComboBox, &QComboBox::currentIndexChanged, myGLWidget, &MyGLWidget::on_new_container_visual_parameter);

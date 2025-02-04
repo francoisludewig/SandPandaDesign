@@ -25,3 +25,19 @@ void SetupTimePresenter::SetCaptureDelay(double value) {
 double SetupTimePresenter::ComputeTimestep() {
     return setup->computeTimestep();
 }
+
+double SetupTimePresenter::GetStartTime() {
+    return setup->startingTime;
+}
+
+double SetupTimePresenter::GetDuration() {
+    return setup->duration;
+}
+
+double SetupTimePresenter::GetTimestep() {
+    return setup->timeStep;
+}
+
+double SetupTimePresenter::GetCaptureDelay() {
+    return setup->captureTimeStep;
+}
