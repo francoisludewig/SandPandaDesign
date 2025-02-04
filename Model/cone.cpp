@@ -3,7 +3,10 @@
 #include <QOpenGLFunctions>
 #include <GL/GLU.h>
 
+int Cone::next_id = 0;
+
 Cone::Cone():Solid() {
+    id = (Cone::next_id++);
     r0 = 0.25;
     r1 = 0.5;
     h = 0.75;

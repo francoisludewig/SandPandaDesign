@@ -32,6 +32,7 @@ public:
     bool ped;
     double xmin,ymin,zmin;
     double xmax,ymax,zmax;
+    int id;
+    static int next_id;
 };
-
 #endif // CUBOID_H

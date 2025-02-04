@@ -36,7 +36,7 @@ public:
     static void CuboidsFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr<Cuboid> >& cuboids);
 
     static Json::Value LatticesToJsonValue(std::vector< std::shared_ptr< Lattice> >&  lattices);
-    static void  LatticesFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr< Lattice> >& lattices);
+    static void  LatticesFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr< Lattice> >& lattices, std::vector< std::shared_ptr<Cuboid>> & cuboids, std::vector< std::shared_ptr<Cone>> & cones);
 
 private:
     static Json::Value PlanToJsonValue(std::shared_ptr<Plan>& plan);
@@ -55,7 +55,7 @@ private:
     static std::shared_ptr<Cuboid> CuboidFromJsonValue(Json::Value& jsonValue);
 
     static Json::Value LatticeToJsonValue(std::shared_ptr<Lattice>& lattice);
-    static std::shared_ptr<Lattice> LatticeFromJsonValue(Json::Value& jsonValue);
+    static std::shared_ptr<Lattice> LatticeFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr<Cuboid>> & cuboids, std::vector< std::shared_ptr<Cone>> & cones);
 
     static Json::Value SetupToJsonValue(std::shared_ptr<Setup>& lattice);
     static void SetupFromJsonValue(Json::Value& jsonValue, std::shared_ptr<Setup> setup);

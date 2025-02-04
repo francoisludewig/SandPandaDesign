@@ -70,8 +70,6 @@ void MainWindow::InitElbowTab(MyGLWidget* myGLWidget)
     velocitiesTabWidget->buildConnections("_elbow");
 }
 
-
-
 void MainWindow::InitCuboidTab(MyGLWidget* myGLWidget)
 {
     QPushButton* addButton = (QPushButton*)(ui->addCuboidPushButton);

@@ -37,7 +37,7 @@ void Setup::Export(std::string &directory) {
     fprintf(ft,"%d\n",Nsp);
     fprintf(ft,"%d\n",isTangentialDynamicModel ? 0 : 1);
     if(isTangentialDynamicModel != 0)
-        fprintf(ft,"%e\t%e\t%e\n",resitutionCoefficient,dynamicFrictionCoefficient, dynamicFrictionCoefficient, normalStiffness);
+        fprintf(ft,"%e\t%e\t%e\n",resitutionCoefficient,dynamicFrictionCoefficient, normalStiffness);
     else
         fprintf(ft,"%e\t%e\t%e\t%e\n",resitutionCoefficient,staticFrictionCoefficient,dynamicFrictionCoefficient,normalStiffness);
     fprintf(ft,"%e\t%e\n",captureTimeStep, startingTime);

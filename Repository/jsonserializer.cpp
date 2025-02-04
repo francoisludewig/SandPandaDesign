@@ -36,7 +36,7 @@ void JsonSerializer::DesignFromJsonValue(std::string jsonAsString) {
         if(!jsonValue["cuboids"].isNull())
             CuboidsFromJsonValue(jsonValue["cuboids"], ContainerRepository::getInstance().cuboids);
         if(!jsonValue["lattices"].isNull())
-            LatticesFromJsonValue(jsonValue["lattices"], ContainerRepository::getInstance().lattices);
+            LatticesFromJsonValue(jsonValue["lattices"], ContainerRepository::getInstance().lattices, ContainerRepository::getInstance().cuboids, ContainerRepository::getInstance().cones);
         SetupFromJsonValue(jsonValue["setup"], ContainerRepository::getInstance().GetSetup());
     }
 }
@@ -132,9 +132,9 @@ Json::Value JsonSerializer::LatticesToJsonValue(std::vector< std::shared_ptr< La
     return jsonArray;
 }
 
-void  JsonSerializer::LatticesFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr< Lattice> >& lattices) {
+void  JsonSerializer::LatticesFromJsonValue(Json::Value& jsonArray, std::vector< std::shared_ptr< Lattice> >& lattices, std::vector< std::shared_ptr<Cuboid>> & cuboids, std::vector< std::shared_ptr<Cone>> & cones) {
     for(auto& jsonValue : jsonArray) {
-        lattices.push_back(LatticeFromJsonValue(jsonValue));
+        lattices.push_back(LatticeFromJsonValue(jsonValue, cuboids, cones));
     }
 }
 
@@ -358,10 +358,17 @@ Json::Value JsonSerializer::LatticeToJsonValue(std::shared_ptr<Lattice>& lattice
     jsonLattice["V"] = lattice->V;
     jsonLattice["W"] = lattice->W;
     jsonLattice["N"] = lattice->N;
+    jsonLattice["cuboid"] = lattice->boxes;
+    jsonLattice["cone"] = lattice->cyd;
+    if(lattice->boxes)
+        jsonLattice["cuboidID"] = lattice->bte->id;
+    if(lattice->cyd)
+        jsonLattice["coneID"] = lattice->cyde->id;
+
     return jsonLattice;
 }
 
-std::shared_ptr<Lattice> JsonSerializer::LatticeFromJsonValue(Json::Value& jsonValue) {
+std::shared_ptr<Lattice> JsonSerializer::LatticeFromJsonValue(Json::Value& jsonValue, std::vector< std::shared_ptr<Cuboid>> & cuboids, std::vector< std::shared_ptr<Cone>> & cones) {
     auto lattice = std::make_shared<Lattice>();
     lattice->xmin = jsonValue["xmin"].asDouble();
     lattice->ymin = jsonValue["ymin"].asDouble();
@@ -379,6 +386,14 @@ std::shared_ptr<Lattice> JsonSerializer::LatticeFromJsonValue(Json::Value& jsonV
     lattice->rdm = jsonValue["rdm"].asBool();
     lattice->Radius();
     lattice->Position();
+
+    lattice->boxes = jsonValue["cuboid"].asBool();
+    lattice->cyd = jsonValue["cone"].asBool();
+    if(lattice->boxes)
+        lattice->LinkedToBoxe(cuboids[jsonValue["cuboidID"].asInt()]);
+    if(lattice->cyd)
+        lattice->LinkedToCone(cones[jsonValue["coneID"].asInt()]);
+
     return lattice;
 }
 

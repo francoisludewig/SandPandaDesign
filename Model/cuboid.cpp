@@ -3,7 +3,10 @@
 #include <iostream>
 #include <cmath>
 
+int Cuboid::next_id = 0;
+
 Cuboid::Cuboid():Solid() {
+    id = (Cuboid::next_id++);
     la = 0.25;
     Lo = 0.25;
     h= 0.5;
