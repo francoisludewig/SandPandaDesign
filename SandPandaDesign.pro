@@ -108,7 +108,7 @@ INCLUDEPATH += Widgets \
 FORMS += \
     mainwindow.ui
 
-LIBS += -lopengl32 -lglu32
+LIBS += -lGL -lGLU -lglut -ljsoncpp #-lopengl32 -lglu32
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -117,5 +117,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 win32: LIBS += -L$$PWD/../../../3rdparties/jsoncpp/lib/ -llibjsoncpp.dll
 
-INCLUDEPATH += $$PWD/../../../3rdparties/jsoncpp/include
-DEPENDPATH += $$PWD/../../../3rdparties/jsoncpp/include
+INCLUDEPATH += /usr/include/jsoncpp/
+DEPENDPATH += /usr/include/jsoncpp/

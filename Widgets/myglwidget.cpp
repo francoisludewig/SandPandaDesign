@@ -1,13 +1,13 @@
 #include "myglwidget.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 #include <QSurfaceFormat>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPen>
 #include <iostream>
-#include<windows.h>
+//#include<windows.h>
 
 #include "Repository/containerrepository.h"
 #include "Repository/sphererepository.h"

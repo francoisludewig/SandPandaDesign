@@ -1,7 +1,7 @@
 #include "lattice.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 
 Lattice::Lattice() {
     N = 0;

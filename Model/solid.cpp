@@ -8,15 +8,15 @@ Solid::Solid() {}
 void Solid::ReadFromFile(FILE *ft)
 {
     double q0 = 0,q1 = 1,q2 = 0,q3 = 0;
-    fscanf_s(ft, "%lf\t%lf\t%lf",&x,&y,&z);
-    fscanf_s(ft, "%lf\t%lf\t%lf\t%lf",&q0,&q1,&q2,&q3);
+    fscanf(ft, "%lf\t%lf\t%lf",&x,&y,&z);
+    fscanf(ft, "%lf\t%lf\t%lf\t%lf",&q0,&q1,&q2,&q3);
     vx.ReadFromFile(ft);
     vy.ReadFromFile(ft);
     vz.ReadFromFile(ft);
     wx.ReadFromFile(ft);
     wy.ReadFromFile(ft);
     wz.ReadFromFile(ft);
-    fscanf_s(ft, "%lf\t%lf\t%lf",&orx,&ory,&orz);
+    fscanf(ft, "%lf\t%lf\t%lf",&orx,&ory,&orz);
 
     nx = (1 - 2*q2*q2 - 2*q3*q3);
     ny = (2*q1*q2 + 2*q3*q0);

@@ -30,7 +30,6 @@
      <font>
       <pointsize>10</pointsize>
       <bold>false</bold>
-      <hintingpreference>PreferNoHinting</hintingpreference>
      </font>
     </property>
     <property name="focusPolicy">

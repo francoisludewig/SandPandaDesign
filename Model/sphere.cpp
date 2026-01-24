@@ -1,7 +1,7 @@
 #include "sphere.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 #include "stripeonsphere.h"
 
 static const StripeOnSphere sos{25};
@@ -13,7 +13,7 @@ void Sphere::ReadFromFile(FILE *ft)
     int b = 0,b1 = 0;
     double q0 = 0,q1 = 1,q2 = 0,q3 = 0;
 
-    fscanf_s(ft,"%d\t%d\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\t%d\n",
+    fscanf(ft,"%d\t%d\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\t%d\n",
              &b,&sp,&r,
              &x,&y,&z,
              &q0,&q1,&q2,&q3,

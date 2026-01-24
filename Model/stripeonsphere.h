@@ -4,7 +4,7 @@
 #include<vector>
 
 #include <QOpenGLFunctions>
-#include<GL/GLU.h>
+#include<GL/glu.h>
 
 class StripeOnSphere
 {

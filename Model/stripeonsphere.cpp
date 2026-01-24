@@ -5,7 +5,7 @@
 #endif
 
 #include <QOpenGLFunctions>
-#include<GL/GLU.h>
+#include<GL/glu.h>
 
 #include<tuple>
 

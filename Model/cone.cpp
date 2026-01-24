@@ -1,7 +1,7 @@
 #include "cone.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 
 int Cone::next_id = 0;
 
@@ -26,8 +26,8 @@ void Cone::ReadFromFile(FILE *ft)
 {
     int b;
     Solid::ReadFromFile(ft);
-    fscanf_s(ft,"%lf\t%lf\t%lf\t%lf",&h,&r0,&r1,&dr);
-    fscanf_s(ft,"%d\t%d\t%d",&inAndOut,&b,&Ngb);
+    fscanf(ft,"%lf\t%lf\t%lf\t%lf",&h,&r0,&r1,&dr);
+    fscanf(ft,"%d\t%d\t%d",&inAndOut,&b,&Ngb);
 }
 
 void Cone::Draw(bool isLineContainer)

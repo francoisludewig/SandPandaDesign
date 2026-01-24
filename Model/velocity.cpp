@@ -10,7 +10,7 @@ Velocity::Velocity() {
 
 void Velocity::ReadFromFile(FILE *ft)
 {
-    fscanf_s(ft,"%lf\t%lf\t%lf\t%lf\n",&A0,&A1,&w,&p);
+    fscanf(ft,"%lf\t%lf\t%lf\t%lf\n",&A0,&A1,&w,&p);
 }
 
 void Velocity::Export(FILE *ft) {

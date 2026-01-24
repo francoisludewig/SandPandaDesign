@@ -26,7 +26,7 @@ void SphereRepository::load(std::string directory)
     ft = std::fopen(filename,"r");
     if(ft) {
         printf("Load file %s\n", filename);
-        fscanf_s(ft,"%d",&count);
+        fscanf(ft,"%d",&count);
         for(int i = 0 ; i < count ; ++i) {
             Sphere sph{};
             sph.ReadFromFile(ft);

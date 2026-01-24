@@ -1,7 +1,7 @@
 #include "disk.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 
 Disk::Disk() : Solid() {
     r = 0.5;
@@ -17,8 +17,8 @@ void Disk::ReadFromFile(FILE *ft)
 {
     double a;
     Solid::ReadFromFile(ft);
-    fscanf_s(ft,"%lf\t%lf",&a,&r);
-    fscanf_s(ft,"%d\t%d",&periodic,&Ngb);
+    fscanf(ft,"%lf\t%lf",&a,&r);
+    fscanf(ft,"%d\t%d",&periodic,&Ngb);
 }
 
 void Disk::Draw(bool isLineContainer)

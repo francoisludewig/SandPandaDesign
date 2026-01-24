@@ -1,7 +1,7 @@
 #include "elbow.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 
 #include "cone.h"
 
@@ -26,20 +26,20 @@ Elbow::Elbow() {
 
 void Elbow::ReadFromFile(FILE *ft)
 {
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&xi,&yi,&zi);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&xf,&yf,&zf);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&xr,&yr,&zr);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&nx,&ny,&nz);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&tx,&ty,&tz);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&sx,&sy,&sz);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&xi,&yi,&zi);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&xf,&yf,&zf);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&xr,&yr,&zr);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&nx,&ny,&nz);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&tx,&ty,&tz);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&sx,&sy,&sz);
     vx.ReadFromFile(ft);
     vy.ReadFromFile(ft);
     vz.ReadFromFile(ft);
     wx.ReadFromFile(ft);
     wy.ReadFromFile(ft);
     wz.ReadFromFile(ft);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&orx,&ory,&orz);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n",&Rc,&alpha,&radius);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&orx,&ory,&orz);
+    fscanf(ft,"%lf\t%lf\t%lf\n",&Rc,&alpha,&radius);
 }
 
 

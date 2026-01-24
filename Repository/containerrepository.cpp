@@ -195,10 +195,10 @@ void ContainerRepository::load(std::string directory)
     ft = std::fopen(filename,"r");
     if(ft) {
         printf("Load file %s\n", filename);
-        fscanf_s(ft,"%d",&Nplan);
-        fscanf_s(ft,"%d",&Ndisk);
-        fscanf_s(ft,"%d",&Ncone);
-        fscanf_s(ft,"%d",&Nelbow);
+        fscanf(ft,"%d",&Nplan);
+        fscanf(ft,"%d",&Ndisk);
+        fscanf(ft,"%d",&Ncone);
+        fscanf(ft,"%d",&Nelbow);
         for(int i = 0 ; i < Nplan ; ++i) {
             Plan plan{};
             plan.ReadFromFile(ft);

@@ -1,7 +1,7 @@
 #include "plan.h"
 
 #include <QOpenGLFunctions>
-#include <GL/GLU.h>
+#include <GL/glu.h>
 
 Plan::Plan() : Solid() {
     dt = 0.5;
@@ -18,7 +18,7 @@ void Plan::ReadFromFile(FILE *ft)
 {
     double a;
     Solid::ReadFromFile(ft);
-    fscanf_s(ft,"%lf\t%lf\t%lf\n%d\t%d\t%d\n",&a,&dt,&ds,&ped,&Ngb,&inAndOut);
+    fscanf(ft,"%lf\t%lf\t%lf\n%d\t%d\t%d\n",&a,&dt,&ds,&ped,&Ngb,&inAndOut);
 }
 
 void Plan::Draw(bool isLineContainer) const
