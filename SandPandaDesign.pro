@@ -14,6 +14,7 @@ SOURCES += \
     Model/disk.cpp \
     Model/elbow.cpp \
     Model/granule.cpp \
+    Model/importedgranule.cpp \
     Model/lattice.cpp \
     Model/linkedcells.cpp \
     Model/plan.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     Model/disk.h \
     Model/elbow.h \
     Model/granule.h \
+    Model/importedgranule.h \
     Model/lattice.h \
     Model/linkedcells.h \
     Model/plan.h \

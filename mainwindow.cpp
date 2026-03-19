@@ -180,6 +180,15 @@ void MainWindow::InitSaveLoadExportWidget(SaveLoadExportWidget* saveloadexportwi
     connect(ui->exportButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_export);
     connect(ui->saveButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_save);
     connect(ui->loadButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_load);
+    connect(ui->importButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_import);
+    connect(ui->exportStartStopButton, &QPushButton::clicked, saveloadexportwidget, &SaveLoadExportWidget::on_export_start_stop);
+
+    // Pass button references so import mode can enable/disable them
+    saveloadexportwidget->setExportButton(ui->exportButton);
+    saveloadexportwidget->setSaveButton(ui->saveButton);
+    saveloadexportwidget->setLoadButton(ui->loadButton);
+    saveloadexportwidget->setExportStartStopButton(ui->exportStartStopButton);
+
     connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->coneTableWidget, &ConeTableWidget::LoadDataFromRepository);
     connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->cuboidTableWidget, &CuboidTableWidget::LoadDataFromRepository);
     connect(saveloadexportwidget, &SaveLoadExportWidget::file_loaded, ui->diskTableWidget, &DiskTableWidget::LoadDataFromRepository);

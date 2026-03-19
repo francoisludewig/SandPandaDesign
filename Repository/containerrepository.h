@@ -13,6 +13,7 @@
 #include "Model/lattice.h"
 #include "Model/setup.h"
 #include "Model/linkedcells.h"
+#include "Model/importedgranule.h"
 
 #include "jsonserializer.h"
 
@@ -47,6 +48,10 @@ public:
     int GetIndexOfCuboid(std::shared_ptr<Cuboid> cuboid);
 
     void Export(std::string directory);
+    bool ImportStartStop(std::string directory);
+    void ExportStartStop(std::string directory);
+
+    bool isImportMode() const { return importMode; }
 
     double ComputeZoom();
 
@@ -74,6 +79,18 @@ private:
     void exportContainer(std::string &directory);
     void exportGrain(std::string &directory);
 
+    bool importStartStopContainer(std::string &directory);
+    bool importStartStopData(std::string &directory);
+    bool importStartStopGrain(std::string &directory);
+    bool importStartStopBodies(std::string &directory);
+    bool importStartStopHollowBall(std::string &directory);
+
+    void exportStartStopContainer(std::string &directory);
+    void exportStartStopData(std::string &directory);
+    void exportStartStopGrain(std::string &directory);
+    void exportStartStopBodies(std::string &directory);
+    void exportStartStopHollowBall(std::string &directory);
+
     std::vector< std::shared_ptr<Plan> > plans {};
     std::vector< std::shared_ptr<Disk> > disks {};
     std::vector< std::shared_ptr<Cone> > cones {};
@@ -82,6 +99,12 @@ private:
     std::vector< std::shared_ptr<Lattice> > lattices {};
     std::shared_ptr<Setup> setup;
     std::shared_ptr<LinkedCells> linkedCells;
+
+    bool importMode = false;
+    std::vector<ImportedGranule> importedGranules {};
+    std::vector<ImportedBody> importedBodies {};
+    std::vector<ImportedHollowBall> importedHollowBalls {};
+
     friend Json::Value JsonSerializer::DesignToJsonValue();
     friend void JsonSerializer::DesignFromJsonValue(std::string jsonAsString);
 };

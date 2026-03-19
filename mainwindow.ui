@@ -2986,6 +2986,35 @@
             <string>Load</string>
            </property>
           </widget>
+          <widget class="QPushButton" name="importButton">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>70</y>
+             <width>141</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Import Start_stop</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="exportStartStopButton">
+           <property name="geometry">
+            <rect>
+             <x>200</x>
+             <y>70</y>
+             <width>301</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Export Start_stop</string>
+           </property>
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
          </widget>
         </item>
        </layout>

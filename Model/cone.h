@@ -31,7 +31,6 @@ public:
     double xmax, ymax, zmax, xmin, ymin, zmin;
     int id;
     static int next_id;
-private:
     void updateTop();
     void updateBottom();
 };
