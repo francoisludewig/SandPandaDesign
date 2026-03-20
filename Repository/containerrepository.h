@@ -25,6 +25,7 @@ public:
     void StartAnimation();
     void StopAnimation();
     void load(std::string directory);
+    void load_start_stop(std::string directory);
     std::shared_ptr<Plan> AddPlan();
     std::shared_ptr<Disk> AddDisk();
     std::shared_ptr<Cone> AddCone();

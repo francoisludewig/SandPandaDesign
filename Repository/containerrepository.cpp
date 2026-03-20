@@ -226,7 +226,6 @@ void ContainerRepository::load(std::string directory)
     }
 }
 
-
 std::shared_ptr<Plan> ContainerRepository::AddPlan()
 {
     Plan plan{};
