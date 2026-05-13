@@ -15,12 +15,12 @@ public:
 
 
     void Zone(double time);
-    double r;
-    int inAndOut;
-    double xmax, ymax, zmax, xmin, ymin, zmin;
+    double r = 0;
+    int inAndOut = -1;
+    double xmax = 0, ymax = 0, zmax = 0, xmin = 0, ymin = 0, zmin = 0;
 
 private:
-    int periodic;
+    int periodic = -9;
 };
 
 #endif // DISK_H

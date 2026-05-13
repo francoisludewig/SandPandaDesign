@@ -7,9 +7,13 @@ Solid::Solid() {}
 
 void Solid::ReadFromFile(FILE *ft)
 {
-    double q0 = 0,q1 = 1,q2 = 0,q3 = 0;
-    fscanf(ft, "%lf\t%lf\t%lf",&x,&y,&z);
-    fscanf(ft, "%lf\t%lf\t%lf\t%lf",&q0,&q1,&q2,&q3);
+    int check = 0;
+    check = fscanf(ft, "%lf\t%lf\t%lf",&x,&y,&z);
+    if(check != 3)
+        printf("Load Solid failed on position (%d)\n", check);
+    check = fscanf(ft, "%lf\t%lf\t%lf\t%lf",&q0,&q1,&q2,&q3);
+    if(check != 4)
+        printf("Load Solid failed on base (%d)\n", check);
     vx.ReadFromFile(ft);
     vy.ReadFromFile(ft);
     vz.ReadFromFile(ft);
@@ -18,9 +22,13 @@ void Solid::ReadFromFile(FILE *ft)
     wz.ReadFromFile(ft);
     fscanf(ft, "%lf\t%lf\t%lf",&orx,&ory,&orz);
 
+
     nx = (1 - 2*q2*q2 - 2*q3*q3);
     ny = (2*q1*q2 + 2*q3*q0);
     nz = (2*q1*q3 - 2*q2*q0);
+    printf("Solid [Pos] : (%f, %f, %f)\n", x, y, z);
+
+    printf("Solid [Base] : (%f, %f, %f, %f) -> n = (%f, %f ,%f)\n", q0, q1, q2, q3, nx, ny ,ny);
 
     tx = (2*q1*q2 - 2*q3*q0);
     ty = (1 - 2*q1*q1 - 2*q3*q3);

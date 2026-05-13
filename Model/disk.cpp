@@ -15,10 +15,10 @@ Disk::Disk() : Solid() {
 
 void Disk::ReadFromFile(FILE *ft)
 {
-    double a;
+    double a = 0;
     Solid::ReadFromFile(ft);
     fscanf(ft,"%lf\t%lf",&a,&r);
-    fscanf(ft,"%d\t%d",&periodic,&Ngb);
+    fscanf(ft,"%d",&periodic);
 }
 
 void Disk::Draw(bool isLineContainer)

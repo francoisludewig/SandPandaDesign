@@ -24,10 +24,10 @@ Cone::Cone(double r0, double r1, double h, int inAndOut):r0(r0), r1(r1), h(h), d
 
 void Cone::ReadFromFile(FILE *ft)
 {
-    int b;
+    int b = 0;
     Solid::ReadFromFile(ft);
     fscanf(ft,"%lf\t%lf\t%lf\t%lf",&h,&r0,&r1,&dr);
-    fscanf(ft,"%d\t%d\t%d",&inAndOut,&b,&Ngb);
+    fscanf(ft, "%d\t%d\t%d\n", &inAndOut, &numTop, &numBottom);
 }
 
 void Cone::Draw(bool isLineContainer)

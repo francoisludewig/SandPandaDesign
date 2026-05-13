@@ -2,8 +2,9 @@
 #define CONTAINERREPOSITORY_H
 
 #include <string>
-#include<vector>
-#include<memory>
+#include <vector>
+#include <memory>
+#include <iostream>
 #define _CRT_SECURE_NO_DEPRECATE
 #include "Model/plan.h"
 #include "Model/disk.h"
@@ -14,7 +15,6 @@
 #include "Model/setup.h"
 #include "Model/linkedcells.h"
 #include "Model/importedgranule.h"
-
 #include "jsonserializer.h"
 
 class ContainerRepository
@@ -81,7 +81,35 @@ private:
 
     bool importStartStopContainer(std::string &directory);
     bool importStartStopData(std::string &directory);
-    bool importStartStopGrain(std::string &directory);
+    bool importStartStopGrain(std::string &directory) {
+        char filename[1024];
+        sprintf(filename, "%s/grain.txt", directory.c_str());
+        FILE *ft = fopen(filename, "r");
+        if (!ft) {
+            std::cout << "No grain.txt found (optional)" << std::endl;
+            return false;
+        }
+
+        int Nsph;
+
+        std::shared_ptr<Lattice> importedLattice = this->AddLattice();
+
+
+        fscanf(ft, "%d", &Nsph);
+        std::cout << "Import " << Nsph << " grains from Start_stop" << std::endl;
+
+        for (int i = 0; i < Nsph; i++) {
+            Granule grain{};
+            grain.readStartStopFromFile(ft);
+            importedLattice->gr.push_back(grain);
+            //importedGranules.push_back(grain);
+        }
+        importedLattice->N = importedLattice->gr.size();
+        importedLattice->autoPosition = false;
+        fclose(ft);
+
+        return true;
+    }
     bool importStartStopBodies(std::string &directory);
     bool importStartStopHollowBall(std::string &directory);
 

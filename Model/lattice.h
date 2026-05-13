@@ -41,6 +41,7 @@ public:
     std::shared_ptr<Cuboid> bte;
     std::shared_ptr<Cone> cyde;
     int Nbte,Nco;
+    bool autoPosition = true;
 };
 
 #endif // LATTICE_H

@@ -29,7 +29,7 @@ public:
     int inAndOut;
     std::shared_ptr<Disk> top, bottom;
     double xmax, ymax, zmax, xmin, ymin, zmin;
-    int id;
+    int id, numTop = -9, numBottom = -9;
     static int next_id;
     void updateTop();
     void updateBottom();

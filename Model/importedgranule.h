@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <vector>
 
-struct ContactData {
+struct ContactData2 {
     int numNeighbour;
     int type;
     int status;
@@ -37,7 +37,7 @@ public:
     int NhollowBall;
 
     int Nneighbour2;
-    std::vector<ContactData> contacts;
+    std::vector<ContactData2> contacts;
 };
 
 class ImportedBody

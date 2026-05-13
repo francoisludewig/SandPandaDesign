@@ -85,6 +85,9 @@ void Lattice::UpDateFromCone(){
 }
 
 void Lattice::Radius(){
+    if(!autoPosition)
+        return;
+
     gr.clear();
     rmax = 0.;
     const double PI = 3.141592;
@@ -119,6 +122,9 @@ void Lattice::Radius(){
 
 
 void Lattice::Position(int fluid){
+    if(!autoPosition)
+        return;
+
     if(boxes)
         this->UpDateFromBoxe();
     if(cyd)
@@ -205,6 +211,9 @@ void Lattice::Position(int fluid){
 }
 
 void Lattice::Velocity(){
+    if(!autoPosition)
+        return;
+
     Granule *g;
     double norme,x,y,z;
     for(int i = 0 ; i < N ; i++){

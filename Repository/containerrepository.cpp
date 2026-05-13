@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <filesystem>
+#include <cmath>
 
 #include "jsonserializer.h"
 
@@ -196,6 +197,10 @@ void ContainerRepository::load(std::string directory)
     //sprintf(filename, "C:\\Users\\utilisateur\\OneDrive - student.helmo.be\\Bureau\\Dev\\Archives\\LuGaProjects\\Test\\Sphere\\Elbow\\New\\Out\\grain_%d.txt", N);
     //sprintf(filename, "C:\\Users\\utilisateur\\OneDrive - student.helmo.be\\Bureau\\Dev\\Archives\\LuGaProjects\\Test\\Sphere\\Cone\\New\\Out\\grain_%d.txt", N);
     sprintf(filename, "%s\\Out\\container.txt", directory.data());
+
+
+    printf("Locale actuelle: %s\n", setlocale(LC_NUMERIC, NULL));
+    //setlocale(LC_NUMERIC, "C");
 
     printf("filename : %s\n", filename);
     ft = std::fopen(filename,"r");
@@ -474,6 +479,11 @@ bool ContainerRepository::ImportStartStop(std::string directory) {
 
 bool ContainerRepository::importStartStopContainer(std::string &directory) {
     char filename[1024];
+
+    setlocale(LC_NUMERIC, "C");
+    printf("Locale actuelle: %s\n", setlocale(LC_NUMERIC, NULL));
+    fflush(stdout);
+
     sprintf(filename, "%s/container.txt", directory.c_str());
     FILE *ft = fopen(filename, "r");
     if (!ft) {
@@ -481,7 +491,7 @@ bool ContainerRepository::importStartStopContainer(std::string &directory) {
         return false;
     }
 
-    int Npl, Nplr, Nco, Nelb;
+    int Npl = -1, Nplr = -1, Nco = -1, Nelb = -1;
     fscanf(ft, "%d", &Npl);
     fscanf(ft, "%d", &Nplr);
     fscanf(ft, "%d", &Nco);
@@ -492,49 +502,59 @@ bool ContainerRepository::importStartStopContainer(std::string &directory) {
 
     // Read Plans (using Solid::ReadFromFile + plan-specific + acceleration)
     for (int i = 0; i < Npl; i++) {
+        std::cout << "Import Plan - " << i+1 << std::endl;
         Plan plan{};
         // Read Solid base: x y z, q0 q1 q2 q3, velocities + origin
-        plan.Solid::ReadFromFile(ft);
+        plan.ReadFromFile(ft);
+        /*
         // Read Plan-specific: dn dt ds, periodic inAndOut
         double dn;
         int periodic;
         fscanf(ft, "%lf\t%lf\t%lf\n", &dn, &plan.dt, &plan.ds);
         fscanf(ft, "%d\t%d\n", &periodic, &plan.inAndOut);
+*/
         // Skip acceleration data: Mass activeGravity, Fcx Fcy Fcz, Mcx Mcy Mcz
         double dummy;
         int dummyInt;
         fscanf(ft, "%lf\t%d", &dummy, &dummyInt);
         fscanf(ft, "%lf\t%lf\t%lf", &dummy, &dummy, &dummy);
         fscanf(ft, "%lf\t%lf\t%lf", &dummy, &dummy, &dummy);
+
         plans.push_back(std::make_shared<Plan>(plan));
     }
 
     // Read Disks (PlanR in SandPanda)
     for (int i = 0; i < Nplr; i++) {
+        std::cout << "Import Disk - " << i+1 << std::endl;
         Disk disk{};
-        disk.Solid::ReadFromFile(ft);
+        disk.ReadFromFile(ft);
+        /*
         double dn;
         fscanf(ft, "%lf\t%lf\n", &dn, &disk.r);
         int periodic;
         fscanf(ft, "%d\n", &periodic);
+        */
         // Skip acceleration data
-        double dummy;
-        int dummyInt;
+        double dummy = -1;
+        int dummyInt = -1;
         fscanf(ft, "%lf\t%d", &dummy, &dummyInt);
         fscanf(ft, "%lf\t%lf\t%lf", &dummy, &dummy, &dummy);
         fscanf(ft, "%lf\t%lf\t%lf", &dummy, &dummy, &dummy);
+
         disks.push_back(std::make_shared<Disk>(disk));
     }
 
     // Read Cones
     for (int i = 0; i < Nco; i++) {
         Cone cone{};
-        cone.Solid::ReadFromFile(ft);
+        cone.ReadFromFile(ft);
+        /*
         double dr;
         fscanf(ft, "%lf\t%lf\t%lf\t%lf\n", &cone.h, &cone.r0, &cone.r1, &dr);
         int in, numTop, numBottom;
         fscanf(ft, "%d\t%d\t%d\n", &in, &numTop, &numBottom);
         cone.inAndOut = in;
+        */
         // Skip acceleration data
         double dummy;
         int dummyInt;
@@ -622,28 +642,7 @@ bool ContainerRepository::importStartStopData(std::string &directory) {
 }
 
 
-bool ContainerRepository::importStartStopGrain(std::string &directory) {
-    char filename[1024];
-    sprintf(filename, "%s/grain.txt", directory.c_str());
-    FILE *ft = fopen(filename, "r");
-    if (!ft) {
-        std::cout << "No grain.txt found (optional)" << std::endl;
-        return false;
-    }
 
-    int Nsph;
-    fscanf(ft, "%d", &Nsph);
-    std::cout << "Import " << Nsph << " grains from Start_stop" << std::endl;
-
-    for (int i = 0; i < Nsph; i++) {
-        ImportedGranule grain;
-        grain.readStartStopFromFile(ft);
-        importedGranules.push_back(grain);
-    }
-
-    fclose(ft);
-    return true;
-}
 
 
 bool ContainerRepository::importStartStopBodies(std::string &directory) {
@@ -983,12 +982,17 @@ void ContainerRepository::exportStartStopGrain(std::string &directory) {
     int sp = setup->Nsp; // Start species numbering after imported ones
     for (auto& lattice : lattices) {
         for (auto& granule : lattice->gr) {
-            fprintf(ft, "%.16e\t%.16e\t%.16e\n", granule.x, granule.y, granule.z);
-            fprintf(ft, "%.16e\t%.16e\t%.16e\t%.16e\n", granule.q0, granule.q1, granule.q2, granule.q3);
-            fprintf(ft, "%.16e\t%.16e\t%.16e\n", granule.vx, granule.vy, granule.vz);
-            fprintf(ft, "%.16e\t%.16e\t%.16e\n", granule.wx, granule.wy, granule.wz);
-            fprintf(ft, "%e\t%e\t%e\t%d\t%d\n", granule.r, granule.m, granule.I, sp, -9);
-            fprintf(ft, "%d\n", 0); // No contact neighbours for new grains
+            if(lattice->autoPosition) {
+                fprintf(ft, "%.16e\t%.16e\t%.16e\n", granule.x, granule.y, granule.z);
+                fprintf(ft, "%.16e\t%.16e\t%.16e\t%.16e\n", granule.q0, granule.q1, granule.q2, granule.q3);
+                fprintf(ft, "%.16e\t%.16e\t%.16e\n", granule.vx, granule.vy, granule.vz);
+                fprintf(ft, "%.16e\t%.16e\t%.16e\n", granule.wx, granule.wy, granule.wz);
+                fprintf(ft, "%e\t%e\t%e\t%d\t%d\n", granule.r, granule.m, granule.I, sp, -9);
+                fprintf(ft, "%d\n", 0); // No contact neighbours for new grains
+            }
+            else {
+                granule.writeStartStopToFile(ft);
+            }
         }
         sp++;
     }

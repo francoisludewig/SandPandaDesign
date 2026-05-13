@@ -18,6 +18,9 @@ Granule::Granule() {
     q2 = 0;
     q3 = 0;
     rho = 2500.;
+    sp = -1;
+    NhollowBall = -9;
+    Nneighbour2 = 0;
 }
 
 void Granule::massInertia(){
@@ -32,4 +35,35 @@ void Granule::exportToFile(FILE *ft, int sp){
     fprintf(ft,"%e\t%e\t%e\n",vx,vy,vz);
     fprintf(ft,"%e\t%e\t%e\n",wx,wy,wz);
     fprintf(ft,"%e\t%e\t%e\t%d\t%d\n",r,m,I,sp,-9);
+}
+
+void Granule::readStartStopFromFile(FILE *ft) {
+    fscanf(ft, "%lf\t%lf\t%lf\n", &x, &y, &z);
+    fscanf(ft, "%lf\t%lf\t%lf\t%lf\n", &q0, &q1, &q2, &q3);
+    fscanf(ft, "%lf\t%lf\t%lf\n", &vx, &vy, &vz);
+    fscanf(ft, "%lf\t%lf\t%lf\n", &wx, &wy, &wz);
+    fscanf(ft, "%lf\t%lf\t%lf\t%d\t%d\n", &r, &m, &I, &sp, &NhollowBall);
+    fscanf(ft, "%d\n", &Nneighbour2);
+    contacts.resize(Nneighbour2);
+    for (int i = 0; i < Nneighbour2; i++) {
+        fscanf(ft, "%d\t%d\t%lf\t%lf\t%lf\n",
+               &contacts[i].id,
+               &contacts[i].status,
+               &contacts[i].x, &contacts[i].y, &contacts[i].z);
+    }
+}
+
+void Granule::writeStartStopToFile(FILE *ft) const {
+    fprintf(ft, "%.16e\t%.16e\t%.16e\n", x, y, z);
+    fprintf(ft, "%.16e\t%.16e\t%.16e\t%.16e\n", q0, q1, q2, q3);
+    fprintf(ft, "%.16e\t%.16e\t%.16e\n", vx, vy, vz);
+    fprintf(ft, "%.16e\t%.16e\t%.16e\n", wx, wy, wz);
+    fprintf(ft, "%e\t%e\t%e\t%d\t%d\n", r, m, I, sp, NhollowBall);
+    fprintf(ft, "%d\n", Nneighbour2);
+    for (int i = 0; i < Nneighbour2; i++) {
+        fprintf(ft, "%d\t%d\t%.16e\t%.16e\t%.16e\n",
+                contacts[i].id,
+                contacts[i].status,
+                contacts[i].x, contacts[i].y, contacts[i].z);
+    }
 }
